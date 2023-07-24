@@ -13,10 +13,34 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// ******* USER *******
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
 });
+
+// user_jadwal
+Route::get('/tampilanjadwal', function () {
+    return view('pages.tampilan-jadwal');
+});
+
+// ****** ADMIN ******
+
+// jadwal
+Route::get('/jadwal', function () {
+    return view('admin.jadwal.index');
+});
+
+// Kalender
+Route::get('/Kalender', function () {
+    return view('pages.Kalender');
+});
+
+Route::get('/login', function () {
+    return view('login_mas.login');
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +52,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
