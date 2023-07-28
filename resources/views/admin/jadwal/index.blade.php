@@ -1,6 +1,6 @@
-@extends('layouts.main')
-@include('layouts.header')
-@include('layouts.sidebar')
+@extends('admin.layouts.main')
+@include('admin.layouts.header')
+@include('admin.layouts.sidebar')
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -86,5 +86,5 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('layouts.footer')
+    @include('admin.layouts.footer')
 @endsection

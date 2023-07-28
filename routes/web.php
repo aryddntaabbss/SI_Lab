@@ -19,27 +19,17 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-// user_jadwal
-Route::get('/tampilanjadwal', function () {
-    return view('pages.tampilan-jadwal');
-});
-
 // ****** ADMIN ******
 
 // jadwal
-Route::get('/jadwal', function () {
-    return view('admin.jadwal.index');
+Route::get('/dashboard-admin', function () {
+    return view('admin.index');
 });
 
 // Kalender
 Route::get('/Kalender', function () {
     return view('pages.Kalender');
 });
-
-Route::get('/login', function () {
-    return view('login_mas.login');
-});
-
 
 
 Route::get('/dashboard', function () {
