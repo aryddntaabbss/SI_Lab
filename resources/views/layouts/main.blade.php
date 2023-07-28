@@ -8,7 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/unkhair.png') }}" type="image/png">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}">
     <!-- Quick CSS -->

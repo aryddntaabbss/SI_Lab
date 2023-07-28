@@ -56,10 +56,10 @@
         });
     </script>
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="icon" href="{{ asset('assets/img/unkhair.png') }}" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}">
     <!-- Quick CSS -->
-    <link rel="stylesheet" href="assets/css/quick-website.css" id="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/quick-website.css') }}" id="stylesheet">
 </head>
 
 <body class="font-sans antialiased">
