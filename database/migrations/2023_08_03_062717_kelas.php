@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_prodi')->unique();
+            $table->timestamp('tahun_ajaran');
             $table->timestamps();
         });
     }
