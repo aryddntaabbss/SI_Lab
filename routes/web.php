@@ -50,6 +50,11 @@ Route::get('/tambah-jadwal', function () {
     return view('admin/layouts/tambah');
 });
 
+// User
+Route::get('/tambah-user', function(){
+    return view('admin/user/tambah_user');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
