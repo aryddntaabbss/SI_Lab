@@ -2,8 +2,7 @@
 <aside class="main-sidebar sidebar-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{ asset('assets/img/unkhair.png') }}" alt="Logo"
-            class="brand-image " style="opacity: .8">
+        <img src="{{ asset('assets/img/unkhair.png') }}" alt="Logo" class="brand-image " style="opacity: .8">
         <span class="brand-text">Admin</span>
     </a>
 
@@ -27,7 +26,7 @@
               with font-awesome or any other icon font library -->
                 {{-- DASHBOARD --}}
                 <li class="nav-item">
-                    <a href="{{ url('/') }}" class="nav-link active">
+                    <a href="{{ url('/dashboard-admin') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -46,19 +45,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/kelola-peralatan') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Peralatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/kelola-jadwal') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/kelola-grup') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Grup</p>
                             </a>
@@ -76,19 +75,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/informasi-peralatan') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Info Peralatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/informasi-jadwal') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Info Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/informasi-grup') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Info Grup</p>
                             </a>
@@ -132,19 +131,19 @@
                     </ul>
                 </li>
                 <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item w-100">
-                <form method="POST" action="#">
-                    @csrf
-                    <a class="nav-link" href="#"
-                        onclick="event.preventDefault();
+                    <li class="nav-item w-100">
+                        <form method="POST" action="#">
+                            @csrf
+                            <a class="nav-link" href="#"
+                                onclick="event.preventDefault();
             this.closest('form').submit();">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                    </a>
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
 
-                </form>
-            </li>
-        </ul>
+                        </form>
+                    </li>
+                </ul>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

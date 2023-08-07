@@ -1,7 +1,13 @@
 @extends('layouts.main')
-@include('layouts.header')
 @section('body')
     <div class="card">
+        <div class="container d-flex justify-content-center">
+            <!-- Brand -->
+            <a class="navbar-img" href="{{ url('/') }}">
+                <img alt="Image placeholder" src="{{ asset('assets/img/unkhair.png') }}" id="navbar-logo"
+                    style="max-width: 60px; max-height: 60px;">
+            </a>
+        </div>
         <div class="card-header">
             <h3 class="card-title text-center">JADWAL PEMAKAIAN LABORATORIUM FAKULTAS TEKNIK</h3>
         </div>
@@ -9,96 +15,108 @@
         <div class="card-body">
             <table class="table table-bordered table-striped">
                 <thead>
-                    <tr>
+                    <tr class="table table-dark">
                         <th>HARI</th>
                         <th>JAM</th>
-                        <th>LAB 1</th>
-                        <th>LAB 2</th>
-                        <th>LAB 3</th>
+                        <th>MATA KULIAH</th>
+                        <th>KELAS</th>
+                        <th class="col-md-3 text-center">PRODI</th>
+                        <th class="col-md-3 text-center">DOSEN</th>
+                        <th>PERTEMUAN</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
                         <td>Presto</td>
                         <td>Nintendo DS browser</td>
                         <td>Nintendo DS</td>
                         <td>8.5</td>
-                        <td>C/A<sup>1</sup></td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.1</td>
-                        <td>KDE 3.1</td>
-                        <td>3.1</td>
-                        <td>C</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.3</td>
-                        <td>KDE 3.3</td>
-                        <td>3.3</td>
-                        <td>A</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>KHTML</td>
-                        <td>Konqureror 3.5</td>
-                        <td>KDE 3.5</td>
-                        <td>3.5</td>
-                        <td>A</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 4.5</td>
-                        <td>Mac OS 8-9</td>
-                        <td>-</td>
-                        <td>X</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.1</td>
-                        <td>Mac OS 7.6-9</td>
-                        <td>1</td>
-                        <td>C</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.2</td>
-                        <td>Mac OS 8-X</td>
-                        <td>1</td>
-                        <td>C</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Misc</td>
-                        <td>NetFront 3.1</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>C</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Misc</td>
-                        <td>NetFront 3.4</td>
-                        <td>Embedded devices</td>
-                        <td>-</td>
-                        <td>A</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
-                        <td>Other browsers</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>U</td>
+                        <td>Presto</td>
+                        <td>Nintendo DS browser</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
+                        <td>C/A</td>
+                        <td>Nintendo DS</td>
+                        <td>8.5</td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.card-body -->

@@ -21,14 +21,31 @@ Route::get('/', function () {
 
 // ****** ADMIN ******
 
-// jadwal
-Route::get('/dashboard-admin', function () {
-    return view('admin.index');
+// dashboard
+// Route::get('/dashboard-admin', function () {
+//     return view('admin.index');
+// });
+
+// Kelola data
+Route::get('/kelola-peralatan', function () {
+    return view('admin/kelola/kelola-perlatan');
+});
+Route::get('/kelola-jadwal', function () {
+    return view('admin/kelola/kelola-jadwal');
+});
+Route::get('/kelola-grup', function () {
+    return view('admin/kelola/kelola-grup');
 });
 
-// Kalender
-Route::get('/Kalender', function () {
-    return view('pages.Kalender');
+// Informasi data
+Route::get('/informasi-peralatan', function () {
+    return view('admin/info/info-perlatan');
+});
+Route::get('/informasi-jadwal', function () {
+    return view('admin/info/info-jadwal');
+});
+Route::get('/informasi-grup', function () {
+    return view('admin/info/info-grup');
 });
 
 

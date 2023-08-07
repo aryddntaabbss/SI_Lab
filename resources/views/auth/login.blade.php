@@ -1,25 +1,9 @@
 @extends('layouts.login')
+
 @section('body')
-    <div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
-            <div class="modal-content bg-dark-dark">
-                <div class="modal-body">
-                    <!-- Text -->
-                    <p class="text-sm text-white mb-3">
-                        We use cookies so that our themes work for you. By using our website, you agree to our use of
-                        cookies.
-                    </p>
-                    <!-- Buttons -->
-                    <a href="pages/utility/terms.html" class="btn btn-sm btn-white" target="_blank">Learn more</a>
-                    <button type="button" class="btn btn-sm btn-primary mr-2" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Main content -->
     <!-- Go back -->
-    <a href="#"
+    <a href="{{ url('/') }}"
         class="btn btn-white btn-icon-only rounded-circle position-absolute zindex-101 left-4 top-4 d-none d-lg-inline-flex"
         data-toggle="tooltip" data-placement="right" title="Go back">
         <span class="btn-inner--icon">
@@ -34,11 +18,8 @@
             <img src="{{ asset('assets/img/unkhair-bg.png') }}" alt="Image" class="img-as-bg">
             <!-- Overlay text -->
             <div class="row position-relative zindex-110 p-5">
-                <div class="col-md-8 text-center mx-auto">
-                    <h4 class="h4 text-black mt-3">Sistem Penjadwalan LAB Komputer Fakultas Teknik</h4>
-                    <p class="text-black opacity-9">
-                        Everything you need to create amazing websites at scale.
-                    </p>
+                <div class="col-md-7 text-center mx-auto">
+                    <h3 class="h3 text-black">Sistem Penjadwalan LAB Komputer Fakultas Teknik</h3>
                 </div>
             </div>
         </div>
@@ -54,15 +35,19 @@
                                         Sign in to your account to continue.
                                     </p>
                                 </div>
-                                <form>
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="form-group">
                                         <label class="form-control-label">Email address</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i data-feather="user"></i></span>
                                             </div>
-                                            <input type="email" class="form-control" id="input-email"
-                                                placeholder="name@gmail.com">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="name@gmail.com" value="{{ old('email') }}" />
+                                            @error('email')
+                                                <span class="pesan-error">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -73,19 +58,28 @@
                                             <div class="mb-2">
                                                 <a href="#"
                                                     class="small text-muted text-underline--dashed border-primary"
-                                                    data-toggle="password-text" data-target="#input-password">Show
-                                                    password</a>
+                                                    data-toggle="password-text" data-target="#password">Show password</a>
                                             </div>
                                         </div>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i data-feather="key"></i></span>
                                             </div>
-                                            <input type="password" class="form-control" id="input-password"
+                                            <input type="password" class="form-control" id="password" name="password"
                                                 placeholder="Password">
+                                            @error('password')
+                                                <span class="pesan-error">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-block btn-primary">Sign in</button>
+                                    <button type="submit" class="btn btn-block btn-primary">Masuk</button>
+                                    <div class="d-flex mt-3">
+                                        @if (Route::has('password.request'))
+                                            <a class="underline text-sm text-center" href="{{ route('password.request') }}">
+                                                Lupa Kata Sandi?
+                                            </a>
+                                        @endif
+                                    </div>
                                 </form>
                             </div>
                         </div>
