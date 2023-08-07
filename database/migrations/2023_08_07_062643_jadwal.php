@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId('id_kelas');
             $table->foreignId('id_prodi');
             $table->foreignId('id_hari');
-            $table->timestamps('tanggal');
-            $table->timestamps('waktu_mulai');
-            $table->timestamps('waktu_selesai');
-            $table->integer('pertemuan');
+            $table->date('tanggal');
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
+            $table->smallInteger('pertemuan');
             $table->timestamps();
         });
     }
