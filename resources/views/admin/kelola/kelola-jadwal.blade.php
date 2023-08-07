@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>PENGELOLAAN GRUP</h1>
+                        <h1>PENGELOLAAN JADWAL</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -40,7 +40,7 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <a href="{{ url('/edit-jadwal') }}" class="btn btn-primary">Edit</a>
-                        <a href="{{ url('/tambah-jadwal') }}}" class="btn btn-success">Add</a>
+                        <a href="{{ url('/tambah-jadwal') }}" class="btn btn-success">Add</a>
                     </div>
                 </div>
                 <!-- /.card -->

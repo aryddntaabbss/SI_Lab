@@ -20,12 +20,6 @@ Route::get('/', function () {
 });
 
 // ****** ADMIN ******
-
-// dashboard
-// Route::get('/dashboard-admin', function () {
-//     return view('admin.index');
-// });
-
 // Kelola data
 Route::get('/kelola-peralatan', function () {
     return view('admin/kelola/kelola-perlatan');
@@ -48,6 +42,13 @@ Route::get('/informasi-grup', function () {
     return view('admin/info/info-grup');
 });
 
+// Edit | Tambah
+Route::get('/edit-jadwal', function () {
+    return view('admin/layouts/edit');
+});
+Route::get('/tambah-jadwal', function () {
+    return view('admin/layouts/tambah');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

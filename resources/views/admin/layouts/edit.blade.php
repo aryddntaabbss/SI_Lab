@@ -17,44 +17,39 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Edit Jadwal Pemakaian Lab Komputer-FT</h3>
-                    </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ route('schedule.update', $schedule->id) }}" method="POST">
+                        <form action="#" method="POST">
                             @csrf
                             @method('PUT')
                             <!-- Form fields for editing -->
                             <div class="form-group">
                                 <label for="hari">Hari:</label>
-                                <input type="text" class="form-control" name="hari" value="{{ $schedule->hari }}">
+                                <input type="text" class="form-control" name="hari" value="">
                             </div>
                             <div class="form-group">
                                 <label for="jam">Jam:</label>
-                                <input type="text" class="form-control" name="jam" value="{{ $schedule->jam }}">
+                                <input type="text" class="form-control" name="jam" value="">
                             </div>
                             <div class="form-group">
                                 <label for="mata_kuliah">Mata Kuliah:</label>
-                                <input type="text" class="form-control" name="mata_kuliah"
-                                    value="{{ $schedule->mata_kuliah }}">
+                                <input type="text" class="form-control" name="mata_kuliah" value="">
                             </div>
                             <div class="form-group">
                                 <label for="kelas">Kelas:</label>
-                                <input type="text" class="form-control" name="kelas" value="{{ $schedule->kelas }}">
+                                <input type="text" class="form-control" name="kelas" value="">
                             </div>
                             <div class="form-group">
                                 <label for="prodi">Prodi:</label>
-                                <input type="text" class="form-control" name="prodi" value="{{ $schedule->prodi }}">
+                                <input type="text" class="form-control" name="prodi" value="">
                             </div>
                             <div class="form-group">
                                 <label for="dosen">Dosen:</label>
-                                <input type="text" class="form-control" name="dosen" value="{{ $schedule->dosen }}">
+                                <input type="text" class="form-control" name="dosen" value="">
                             </div>
                             <div class="form-group">
                                 <label for="pertemuan">Pertemuan:</label>
-                                <input type="text" class="form-control" name="pertemuan"
-                                    value="{{ $schedule->pertemuan }}">
+                                <input type="text" class="form-control" name="pertemuan" value="">
                             </div>
 
 
