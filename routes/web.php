@@ -27,9 +27,6 @@ Route::get('/kelola-peralatan', function () {
 Route::get('/kelola-jadwal', function () {
     return view('admin/kelola/kelola-jadwal');
 });
-Route::get('/kelola-grup', function () {
-    return view('admin/kelola/kelola-grup');
-});
 
 // Informasi data
 Route::get('/informasi-peralatan', function () {
@@ -38,8 +35,8 @@ Route::get('/informasi-peralatan', function () {
 Route::get('/informasi-jadwal', function () {
     return view('admin/info/info-jadwal');
 });
-Route::get('/informasi-grup', function () {
-    return view('admin/info/info-grup');
+Route::get('/informasi-user', function () {
+    return view('admin/info/info-user');
 });
 
 // Edit | Tambah
@@ -53,6 +50,9 @@ Route::get('/tambah-jadwal', function () {
 // User
 Route::get('/tambah-user', function(){
     return view('admin/user/tambah_user');
+});
+Route::get('/profil-user', function () {
+    return view('admin/user/profil_user');
 });
 
 Route::get('/dashboard', function () {
