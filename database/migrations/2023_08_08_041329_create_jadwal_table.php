@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nip');
-            $table->foreignId('id_matkul');
-            $table->foreignId('id_kelas');
-            $table->foreignId('id_prodi');
+            $table->foreignId('dosen_id')->references('id')->on('dosen');
+            $table->foreignId('matkul_id')->references('id')->on('matkul');
+            $table->foreignId('kelas_id')->references('id')->on('kelas');
+            $table->foreignId('prodi_id')->references('id')->on('prodi');
             $table->date('tanggal');
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');

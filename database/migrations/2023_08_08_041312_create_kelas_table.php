@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matkul', function (Blueprint $table) {
-            $table->id('id_matkul');
-            $table->string('nama_matkul');
-            $table->smallInteger('sks');
+        Schema::create('kelas', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_prodi')->references('id')->on('prodi');
+            $table->date('tahun_ajaran');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('matkul');
+        Schema::dropIfExists('kelas');
     }
 };
