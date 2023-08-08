@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>PENGELOLAAN JADWAL</h1>
+                        <h1>INFORMASI JADWAL</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -18,7 +18,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">JADWAL PEMAKAIAN LAB KOMPUTER-FT</h3>
 
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -32,45 +31,109 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>User</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Reason</th>
+                                <tr class="table">
+                                    <th>HARI</th>
+                                    <th>JAM</th>
+                                    <th>MATA KULIAH</th>
+                                    <th>KELAS</th>
+                                    <th class="col-md-3 text-center">PRODI</th>
+                                    <th class="col-md-3 text-center">DOSEN</th>
+                                    <th>PERTEMUAN</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-success">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
                                 </tr>
                                 <tr>
-                                    <td>219</td>
-                                    <td>Alexander Pierce</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-warning">Pending</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
                                 </tr>
                                 <tr>
-                                    <td>657</td>
-                                    <td>Bob Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-primary">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
                                 </tr>
                                 <tr>
-                                    <td>175</td>
-                                    <td>Mike Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="tag tag-danger">Denied</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
                                 </tr>
                             </tbody>
                         </table>

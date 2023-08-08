@@ -39,8 +39,8 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <a href="{{ url('/edit-jadwal') }}" class="btn btn-primary">Edit</a>
-                        <a href="{{ url('/tambah-jadwal') }}" class="btn btn-success">Add</a>
+                        <a href="{{ url('/tambah-jadwal') }}" class="btn btn-primary">Tambah</a>
+                        <a href="{{ url('/edit-jadwal') }}" class="btn btn-success">Edit</a>
                     </div>
                 </div>
                 <!-- /.card -->

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>PENGELOLAAN GRUP</h1>
+                        <h1>PENGELOLAAN JADWAL</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -18,8 +18,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">JADWAL PEMAKAIAN LAB KOMPUTER-FT</h3>
-
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -38,9 +36,8 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer">
-                        <a href="{{ url('/edit-jadwal') }}" class="btn btn-primary">Edit</a>
-                        <a href="{{ url('/tambah-jadwal') }}" class="btn btn-success">Add</a>
+                    <div class="d-grid gap-2 mx-4 mt-3 mb-3">
+                        <button type="submit" action="save" class="btn btn-success">Update Data</button>
                     </div>
                 </div>
                 <!-- /.card -->

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>INFORMASI PERALATAN</h1>
+                        <h1>INFORMASI USER</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -35,12 +35,10 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr class="table text-center">
-                                    <th>Nama Barang</th>
-                                    <th>Kode Barang</th>
-                                    <th>Merek/Tipe</th>
-                                    <th>Tahun</th>
-                                    <th>Jumlah</th>
-                                    <th>Ket</th>
+                                    <th>Nama</th>
+                                    <th>Prodi</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,80 +47,60 @@
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                                 <tr>
                                     <td>Presto</td>
                                     <td>Nintendo DS browser</td>
                                     <td>Nintendo DS</td>
                                     <td>8.5</td>
-                                    <td>C/A</td>
-                                    <td>Nintendo DS</td>
                                 </tr>
                             </tbody>
                         </table>

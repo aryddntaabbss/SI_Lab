@@ -36,9 +36,8 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer">
-                        <a href="{{ url('/tambah-peralatan') }}" class="btn btn-primary">Tambah</a>
-                        <a href="{{ url('/edit-peralatan') }}" class="btn btn-success">Edit</a>
+                    <div class="d-grid gap-2 mx-4 mt-3 mb-3">
+                        <button type="submit" action="save" class="btn btn-success">Update Data</button>
                     </div>
                 </div>
                 <!-- /.card -->

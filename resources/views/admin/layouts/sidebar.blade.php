@@ -49,19 +49,13 @@
                         <li class="nav-item">
                             <a href="{{ url('/kelola-peralatan') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Data Peralatan</p>
+                                <p>Peralatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/kelola-jadwal') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Data Jadwal</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/kelola-grup') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Grup</p>
+                                <p>Jadwal</p>
                             </a>
                         </li>
                     </ul>
@@ -71,7 +65,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-info"></i>
                         <p>
-                            Info data
+                            Informasi data
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -79,19 +73,19 @@
                         <li class="nav-item">
                             <a href="{{ url('/informasi-peralatan') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Info Peralatan</p>
+                                <p>Peralatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/informasi-jadwal') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Info Jadwal</p>
+                                <p>Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/informasi-grup') }}" class="nav-link">
+                            <a href="{{ url('/informasi-user') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Info Grup</p>
+                                <p>User</p>
                             </a>
                         </li>
                     </ul>
@@ -108,7 +102,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/profil-user') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Profil Users</p>
                             </a>
