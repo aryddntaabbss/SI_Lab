@@ -41,14 +41,20 @@ Route::get('/informasi-user', function () {
 
 // Edit | Tambah
 Route::get('/edit-jadwal', function () {
-    return view('admin/layouts/edit');
+    return view('admin/layouts/edit-data-jadwal');
 });
 Route::get('/tambah-jadwal', function () {
-    return view('admin/layouts/tambah');
+    return view('admin/layouts/tambah-data-jadwal');
+});
+Route::get('/edit-peralatan', function () {
+    return view('admin/layouts/edit-data-peralatan');
+});
+Route::get('/tambah-peralatan', function () {
+    return view('admin/layouts/tambah-data-peralatan');
 });
 
 // User
-Route::get('/tambah-user', function(){
+Route::get('/tambah-user', function () {
     return view('admin/user/tambah_user');
 });
 Route::get('/profil-user', function () {
