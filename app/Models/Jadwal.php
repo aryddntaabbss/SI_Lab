@@ -10,6 +10,10 @@ class Jadwal extends Model
 {
     use HasFactory;
 
+    protected $table = 'jadwal';
+
+    protected $guarded = ['id'];
+
     public function kelas(): BelongsTo
     {
         return $this->belongsTo(Kelas::class,'id_kelas');
