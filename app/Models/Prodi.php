@@ -18,4 +18,9 @@ class Prodi extends Model
     {
         return $this->hasMany(Jadwal::class);
     }
+
+    public function dosen() : HasMany
+    {
+        return $this->hasMany(Dosen::class);
+    }
 }

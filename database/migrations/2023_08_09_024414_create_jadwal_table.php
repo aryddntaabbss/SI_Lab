@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dosen_id')->references('id')->on('dosen');
-            $table->foreignId('matkul_id')->references('id')->on('matkul');
-            $table->foreignId('kelas_id')->references('id')->on('kelas');
-            $table->foreignId('prodi_id')->references('id')->on('prodi');
-            $table->date('tanggal');
+            $table->foreignId('id_matkul')->references('id')->on('matkul');
+            $table->foreignId('id_dosen')->references('id')->on('dosen');
+            $table->foreignId('id_prodi')->references('id')->on('prodi');
+            $table->string('kelas');
+            $table->smallInteger('semester')->unsigned();
+            $table->date('hari_tanggal');
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');
-            $table->smallInteger('pertemuan');
             $table->timestamps();
         });
     }

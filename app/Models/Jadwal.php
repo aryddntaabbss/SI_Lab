@@ -14,16 +14,6 @@ class Jadwal extends Model
 
     protected $guarded = ['id'];
 
-    public function kelas(): BelongsTo
-    {
-        return $this->belongsTo(Kelas::class,'id_kelas');
-    }
-
-    public function Prodi(): BelongsTo
-    {
-        return $this->belongsTo(Kelas::class,'id_prodi');
-    }
-
     public function Dosen(): BelongsTo
     {
         return $this->belongsTo(Kelas::class,'nip');
