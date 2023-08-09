@@ -20,23 +20,26 @@ Route::get('/', function () {
 });
 
 // ****** ADMIN ******
-// Kelola data
-Route::get('/kelola-peralatan', function () {
-    return view('admin/kelola/kelola-perlatan');
+// INTERFACE
+Route::get('/dashboard/matakuliah', function () {
+    return view('admin/matakuliah/index');
 });
-Route::get('/kelola-jadwal', function () {
-    return view('admin/kelola/kelola-jadwal');
+Route::get('/dashboard/tambah-matkul', function () {
+    return view('admin/matakuliah/tambah');
+});
+Route::get('/dashboard/dosen', function () {
+    return view('admin/dosen/index');
+});
+Route::get('/dashboard/tambah-dosen', function () {
+    return view('admin/dosen/tambah');
 });
 
-// Informasi data
-Route::get('/informasi-peralatan', function () {
-    return view('admin/info/info-perlatan');
+// Jadwal
+Route::get('dashboard/kelola', function () {
+    return view('admin/jadwal/kelola');
 });
-Route::get('/informasi-jadwal', function () {
-    return view('admin/info/info-jadwal');
-});
-Route::get('/informasi-user', function () {
-    return view('admin/info/info-user');
+Route::get('dashboard/informasi', function () {
+    return view('admin/jadwal/info');
 });
 
 // Edit | Tambah
@@ -57,7 +60,7 @@ Route::get('/tambah-peralatan', function () {
 Route::get('/tambah-user', function () {
     return view('admin/user/tambah_user');
 });
-Route::get('/profil-user', function () {
+Route::get('/dashboard/profil-user', function () {
     return view('admin/user/profil_user');
 });
 

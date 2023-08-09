@@ -37,85 +37,54 @@
                 </li>
                 <li class="nav-header">INTERFACE</li>
                 {{-- Kelola data --}}
+                <li class="nav-item">
+                    <a href="{{ url('/dashboard/dosen') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-tie"></i>
+                        <p>
+                            Dosen
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/dashboard/matakuliah') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Mata Kuliah
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fas fa-list"></i>
                         <p>
-                            Kelola data
+                            Jadwal
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/kelola-peralatan') }}" class="nav-link">
+                            <a href="{{ url('/dashboard/kelola') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Peralatan</p>
+                                <p>Kelola</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/kelola-jadwal') }}" class="nav-link">
+                            <a href="{{ url('/dashboard/informasi') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Jadwal</p>
+                                <p>Informasi</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                {{-- info data --}}
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-info"></i>
-                        <p>
-                            Informasi data
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('/informasi-peralatan') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Peralatan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/informasi-jadwal') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Jadwal</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/informasi-user') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>User</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-header">USERS</li>
                 {{-- User --}}
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
+                <li class="nav-header">USERS</li>
+                <li class="nav-item">
+                    <a href="{{ url('/dashboard/profil-user') }}" class="nav-link">
+                        <i class="nav-icon fas fa-address-card"></i>
                         <p>
-                            User
-                            <i class="fas fa-angle-left right"></i>
+                            Profil User
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('/profil-user') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Profil Users</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('/tambah-user') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add User</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item w-100">
                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
