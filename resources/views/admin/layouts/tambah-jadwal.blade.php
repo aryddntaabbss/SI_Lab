@@ -49,12 +49,12 @@
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="SKS">
                     </div>
                 </div>
-                
-                
+
+
                 <div class="d-grid gap-2 mx-4 mt-3">
                     <button type="submit" action="save" class="btn btn-primary">Tambah</button>
                 </div>
-                    
+
 
                 <!-- /.card -->
             </div>
