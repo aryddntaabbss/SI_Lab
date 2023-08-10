@@ -28,7 +28,7 @@
               with font-awesome or any other icon font library -->
                 {{-- DASHBOARD --}}
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard') }}" class="nav-link active">
+                    <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('/dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -38,7 +38,7 @@
                 <li class="nav-header">INTERFACE</li>
                 {{-- Kelola data --}}
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/dosen') }}" class="nav-link">
+                    <a href="{{ url('/dashboard/dosen') }}" class="nav-link {{ Request::is('/dashboard/dosen') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
                         <p>
                             Dosen
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/matakuliah') }}" class="nav-link">
+                    <a href="{{ url('/dashboard/matakuliah') }}" class="nav-link {{ Request::is('/dashboard/matakuliah') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Mata Kuliah
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ Request::is('/dashboard/jadwal') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Jadwal
@@ -63,13 +63,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard/kelola') }}" class="nav-link">
+                            <a href="{{ url('/dashboard/kelola') }}" class="nav-link {{ Request::is('/dashboard/kelola') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kelola</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard/informasi') }}" class="nav-link">
+                            <a href="{{ url('/dashboard/informasi') }}" class="nav-link {{ Request::is('/dashboard/informasi') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Informasi</p>
                             </a>
@@ -79,7 +79,7 @@
                 {{-- User --}}
                 <li class="nav-header">USERS</li>
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/profil-user') }}" class="nav-link">
+                    <a href="{{ url('/dashboard/profil-user') }}" class="nav-link {{ Request::is('/dashboard/profil-user') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-address-card"></i>
                         <p>
                             Profil User

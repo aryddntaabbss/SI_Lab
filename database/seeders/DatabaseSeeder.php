@@ -60,6 +60,22 @@ class DatabaseSeeder extends Seeder
             'id_prodi' => 2,
             'role_id' => 2,
         ]);
+        
+        \App\Models\User::factory()->create([
+            'name' => 'Dosen2',
+            'email' => 'dosen2@gmail.com',
+            'password' => bcrypt('dosen123'),
+            'id_prodi' => 3,
+            'role_id' => 2,
+        ]);
+
+        DB::table('matkul')->insert([
+            'nama_matkul' => 'Keamanan Data',
+            'id_dosen' => 2,
+            'kelas' => '4IF2',
+            'sks' => 2,
+            'semester' => 4,
+        ]);
 
     }
 }

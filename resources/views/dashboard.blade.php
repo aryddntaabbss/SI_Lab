@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark">Selamat Datang {{ auth()->user()->name }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                     </div><!-- /.col -->
@@ -19,6 +19,7 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
+        {{-- @foreach ($users as $user) --}}
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
@@ -27,7 +28,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $user }}</h3>
 
                                 <p>Jumlah Dosen</p>
                             </div>
@@ -41,7 +42,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>{{ $matkul }}</h3>
 
                                 <p>Jumlah Mata Kuliah</p>
                             </div>
@@ -55,7 +56,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{ $prodi }}</h3>
 
                                 <p>Jumlah Prodi</p>
                             </div>
@@ -78,6 +79,7 @@
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
+        {{-- @endforeach --}}
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

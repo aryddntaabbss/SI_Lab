@@ -10,17 +10,12 @@ class Prodi extends Model
 {
     use HasFactory;
 
-    protected $table = 'kelas';
+    protected $table = 'prodi';
 
     protected $guarded = ['id'];
 
-    public function jadwal() : HasMany 
+    public function user() : HasMany
     {
-        return $this->hasMany(Jadwal::class);
-    }
-
-    public function dosen() : HasMany
-    {
-        return $this->hasMany(Dosen::class);
+        return $this->hasMany(User::class);
     }
 }

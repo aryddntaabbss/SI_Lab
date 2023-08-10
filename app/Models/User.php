@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,8 +47,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function jadwal() : HasMany 
+    public function matkul() : HasMany 
     {
-        return $this->hasMany(Jadwal::class);
+        return $this->hasMany(Matkul::class);
+    }
+    
+    public function prodi() : BelongsTo 
+    {
+        return $this->belongsTo(Prodi::class);
     }
 }
