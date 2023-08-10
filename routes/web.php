@@ -42,16 +42,10 @@ Route::get('dashboard/informasi', function () {
 
 // Edit | Tambah
 Route::get('/edit-jadwal', function () {
-    return view('admin/layouts/edit-data-jadwal');
+    return view('admin/layouts/edit-jadwal');
 });
 Route::get('/tambah-jadwal', function () {
-    return view('admin/layouts/tambah-data-jadwal');
-});
-Route::get('/edit-peralatan', function () {
-    return view('admin/layouts/edit-data-peralatan');
-});
-Route::get('/tambah-peralatan', function () {
-    return view('admin/layouts/tambah-data-peralatan');
+    return view('admin/layouts/tambah-jadwal');
 });
 
 // User
