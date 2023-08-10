@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('matkul', function (Blueprint $table) {
             $table->id();
             $table->string('nama_matkul');
-            $table->foreignId('id_dosen')->references('id')->on('dosen');
+            $table->foreignId('id_dosen')->references('id')->on('users');
             $table->string('kelas');
             $table->smallInteger('sks');
             $table->smallInteger('semester');

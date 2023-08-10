@@ -15,12 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123'),
-            // 'role_id' => 1,
+        DB::table('role')->insert([
+            'name' => 'Admin'
         ]);
+        DB::table('role')->insert([
+            'name' => 'Dosen'
+        ]);
+
 
         DB::table('prodi')->insert([
             'nama_prodi' => 'Informatika'
@@ -43,5 +44,22 @@ class DatabaseSeeder extends Seeder
         DB::table('prodi')->insert([
             'nama_prodi' => 'Arsitektur'
         ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin123'),
+            'id_prodi' => 1,
+            'role_id' => 1,
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Dosen',
+            'email' => 'dosen@gmail.com',
+            'password' => bcrypt('dosen123'),
+            'id_prodi' => 2,
+            'role_id' => 2,
+        ]);
+
     }
 }
