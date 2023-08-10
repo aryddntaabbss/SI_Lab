@@ -54,7 +54,22 @@
                 document.querySelector('body').classList.add('loaded');
             }, 300);
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordField = document.getElementById('password');
+            const togglePasswordButton = document.querySelector('[data-toggle="password-text"]');
+
+            togglePasswordButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                } else {
+                    passwordField.type = 'password';
+                }
+            });
+        });
     </script>
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('assets/img/unkhair.png" type="image/png') }}"><!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/libs/@fortawesome/fontawesome-free/css/all.min.css') }}">
