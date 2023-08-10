@@ -22,9 +22,12 @@ class User extends Authenticatable
     // protected $table = ['user'];
     // protected $guard = ['id'];
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
+        'id_prodi',
+        'id_role'
     ];
 
     /**
@@ -54,6 +57,11 @@ class User extends Authenticatable
     
     public function prodi() : BelongsTo 
     {
-        return $this->belongsTo(Prodi::class);
+        return $this->belongsTo(Prodi::class, 'id_prodi');
+    }
+
+    public function role() : BelongsTo 
+    {
+        return $this->belongsTo(Role::class, 'id_role');
     }
 }

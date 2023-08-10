@@ -50,15 +50,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
             'id_prodi' => 1,
-            'role_id' => 1,
+            'id_role' => 1,
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Dosen',
+            'name' => 'Abdulkadir',
             'email' => 'dosen@gmail.com',
             'password' => bcrypt('dosen123'),
             'id_prodi' => 2,
-            'role_id' => 2,
+            'id_role' => 2,
         ]);
         
         \App\Models\User::factory()->create([
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'dosen2@gmail.com',
             'password' => bcrypt('dosen123'),
             'id_prodi' => 3,
-            'role_id' => 2,
+            'id_role' => 2,
         ]);
 
         DB::table('matkul')->insert([

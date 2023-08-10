@@ -15,50 +15,73 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-        <div class="row">
+        <div class="container-fluid">
             <div class="col-12">
-                <div class="col-8 mx-3 mt-3 mb-1">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nip :</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+
+                <form method="POST" action="{{ route('dosen.create') }}" >
+                    @csrf
+                    <div class="col-10 mx-3 mt-3 mb-1">
+                        <div class="mb-3">
+                            <label for="nip" class="form-label">Nip :</label>
+                            <input type="text" class="form-control" id="nip" placeholder="NIP Dosen" name="id">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama :</label>
+                            <input type="text" class="form-control" id="nama" placeholder="Username" name="name" value="{{ old('name') }}">
+                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-danger" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="prodi" class="form-label">Prodi :</label>
+                            <select class="form-control" id="prodi" name="prodi">
+                                @foreach($prodis as $prodi)
+                                    <option value="{{ $prodi->id }}">{{ $prodi->nama_prodi }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email :</label>
+                            <input type="email" class="form-control" id="email" placeholder="tes@gmail.com" name="email">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger" />
+                        </div>
+                        <div class="row mb-3 justify-content-between">
+                            <div class="col-7">
+                                <div class="mb-3" style="display:none;">
+                                    <label for="role" class="form-label">Jenis Akun :</label>
+                                    <select class="form-control" id="role" name="role" @readonly(true)>
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password :</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" /> 
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Password :</label>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required autocomplete="new-password">
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-danger" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <p class="mb-2">Password requirements</p>
+                                <p class="text-muted mb-2"> To create a new password, you have to meet all of the
+                                    following requirements: </p>
+                                <ul class="text-muted pl-4 mb-0">
+                                    <li> Minimum 8 character </li>
+                                    <li>At least one special character</li>
+                                    <li>At least one number</li>
+                                    <li>Can’t be the same as a previous password </li>
+                                </ul>    
+                            </div>
+                        </div>
+                        
                     </div>
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nama :</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    <div class="d-grid gap-2 mx-4 mt-3">
+                        <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="prodi" class="form-label">Prodi :</label>
-                        <select class="form-control" id="prodi">
-                            <option value="0"></option>
-                            <option value="1">Teknik Arsitek</option>
-                            <option value="2">Teknik Elektro</option>
-                            <option value="3">Teknik Informatika</option>
-                            <option value="4">Teknik Industri</option>
-                            <option value="5">Teknik Mesin</option>
-                            <option value="6">Teknik Sipil</option>
-                            <option value="7">Teknik Pertambangan</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Jumlah Mata Kuliah :</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email :</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password :</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
-                    </div>
-                </div>
-
-
-                <div class="d-grid gap-2 mx-4 mt-3">
-                    <button type="submit" action="save" class="btn btn-success">Simpan</button>
-                </div>
-
+                </form>
 
                 <!-- /.card -->
             </div>

@@ -28,7 +28,7 @@
               with font-awesome or any other icon font library -->
                 {{-- DASHBOARD --}}
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('/dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('/dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -38,7 +38,7 @@
                 <li class="nav-header">INTERFACE</li>
                 {{-- Kelola data --}}
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/dosen') }}" class="nav-link {{ Request::is('/dashboard/dosen') ? 'active' : '' }}">
+                    <a href="{{ route('dosen.index') }}" class="nav-link {{ Request::is('/dashboard/dosen') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
                         <p>
                             Dosen
@@ -89,8 +89,8 @@
                 <li class="nav-item w-100">
                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a class="nav-link" href="#"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); this.closest('form').submit();">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Logout</p>
                         </a>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,12 +29,8 @@ Route::get('/dashboard/matakuliah', function () {
 Route::get('/dashboard/tambah-matkul', function () {
     return view('admin/matakuliah/tambah');
 });
-Route::get('/dashboard/dosen', function () {
-    return view('admin/dosen/index');
-});
-Route::get('/dashboard/tambah-dosen', function () {
-    return view('admin/dosen/tambah');
-});
+
+
 
 // Jadwal
 Route::get('dashboard/kelola', function () {
