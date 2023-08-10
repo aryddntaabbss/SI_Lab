@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tambah Data</h1>
+                        <h1>Edit Data {{ $user->name }}</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -18,46 +18,61 @@
         <div class="container-fluid">
             <div class="col-12">
 
-                <form method="POST" action="{{ route('dosen.create') }}">
+                <form method="post" action="{{ route('dosen.update', $user->id) }}">
+                    @method('patch')
                     @csrf
                     <div class="col-10 mx-3 mt-3 mb-1">
                         <div class="mb-3">
                             <label for="nip" class="form-label">Nip :</label>
                             <input type="text" class="form-control" id="nip" placeholder="NIP Dosen"
-                                name="id">
+                                name="id" value="{{ $user->id }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama :</label>
                             <input type="text" class="form-control" id="nama" placeholder="Username" name="name"
-                                value="{{ old('name') }}">
+                                value="{{ $user->name }}">
                             <x-input-error :messages="$errors->get('name')" class="mt-2 text-danger" />
                         </div>
+
                         <div class="mb-3">
                             <label for="prodi" class="form-label">Prodi :</label>
                             <select class="form-control" id="prodi" name="prodi">
                                 @foreach ($prodis as $prodi)
-                                    <option value="{{ $prodi->id }}">{{ $prodi->nama_prodi }}</option>
+                                    <option value="{{ $prodi->id }}" {{ $user->prodi->id == $prodi->id ? 'selected' : '' }}>
+                                        {{ $prodi->nama_prodi }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email :</label>
                             <input type="email" class="form-control" id="email" placeholder="tes@gmail.com"
-                                name="email">
+                                name="email" value="{{ $user->email }}">
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger" />
                         </div>
                         <div class="row mb-3 justify-content-between">
                             <div class="col-7">
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password :</label>
+                                    <label for="password" class="form-label">Password Lama :</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="password" name="password">
                                         <button class="btn btn-outline-hidden" type="button" id="togglePassword">
                                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" />
+                                    <x-input-error :messages="$errors->get('oldPassword')" class="mt-2 text-danger" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">Password Baru :</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword">
+                                        <button class="btn btn-outline-hidden" type="button" id="toggleNewPassword">
+                                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <x-input-error :messages="$errors->get('newPassword')" class="mt-2 text-danger" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password :</label>
@@ -103,8 +118,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const togglePasswordButton = document.getElementById('togglePassword');
+            const toggleNewPasswordButton = document.getElementById('toggleNewPassword');
             const toggleConfirmPasswordButton = document.getElementById('toggleConfirmPassword');
             const passwordField = document.getElementById('password');
+            const newPasswordField = document.getElementById('newPassword');
             const confirmPasswordField = document.getElementById('password_confirmation');
 
             togglePasswordButton.addEventListener('click', function() {
@@ -112,6 +129,14 @@
                     passwordField.type = 'text';
                 } else {
                     passwordField.type = 'password';
+                }
+            });
+
+            toggleNewPasswordButton.addEventListener('click', function() {
+                if (newPasswordField.type === 'password') {
+                    newPasswordField.type = 'text';
+                } else {
+                    newPasswordField.type = 'password';
                 }
             });
 

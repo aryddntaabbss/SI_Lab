@@ -57,9 +57,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard/dosen', [UserController::class, 'index'])->name('dosen.index');
+    Route::get('/dashboard/dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
 
-    Route::get('/dashboard/tambah-dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
-
-    Route::post('/dashboard/tambah-dosen', [RegisteredUserController::class, 'store']);
+    Route::post('/dashboard/dosen', [RegisteredUserController::class, 'store']);
 });

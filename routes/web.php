@@ -65,9 +65,14 @@ Route::get('/dashboard/profil-user', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard/dosen', [UserController::class, 'index'])->name('dosen.index');
+    Route::delete('/dashboard/dosen', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/dashboard/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::get('/dashboard/dosen/{username}', [UserController::class, 'edit'])->name('dosen.edit');
+    // Route::patch('/dashboard/dosen/{username}', [UserController::class, 'update'])->name('dosen.update');
+    // Route::delete('/dashboard/dosen/{id}', [UserController::class, 'destroy'])->name('dosen.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -35,7 +35,7 @@
                             <td>{{ $user->prodi->nama_prodi }}</td>
                             <td>{{ $user->email }}</td>
                             <td class="text-center">
-                                <a href="#" class="btn btn-success">Edit</a>
+                                <a href="{{ route('dosen.edit', ['username' => $user->name]) }}" class="btn btn-success">Edit</a>
                                 <a href="#" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>

@@ -14,13 +14,14 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Prodi;
 use App\Models\Role;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create() : View
+    public function create(): View
     {
         return view('admin.dosen.tambah', [
             'prodis' => Prodi::all(),
@@ -38,10 +39,9 @@ class RegisteredUserController extends Controller
         $request->validate([
             'id' => ['required'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'prodi' => ['required'],
-            'role' => ['required'],
         ]);
 
         $user = User::create([
@@ -50,11 +50,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'id_prodi' => $request->prodi,
-            'id_role' => $request->role,
+            'id_role' => 2,
         ]);
 
         event(new Registered($user));
 
-        return back()->with('Sukses', 'Dosen Berhasil Di Tambahkan');
+        return Redirect::route('dosen.create')->with('success', 'Dosen Berhasil Di Tambahkan');
     }
 }
