@@ -60,11 +60,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 Route::middleware('auth')->group(function () {  
     Route::get('/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/dashboard/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/dashboard/profile/info', [ProfileController::class, 'updateInfo'])->name('profile.updateInfo');
+    Route::patch('/dashboard/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::delete('/dashboard/dosen/{id}', [ProfileController::class, 'destroy'])->name('dosen.delete');
-    // Route::get('/dashboard/dosen/{username}', [UserController::class, 'edit'])->name('dosen.edit');
-    // Route::patch('/dashboard/dosen/{username}', [UserController::class, 'update'])->name('dosen.update');
-    // Route::delete('/dashboard/dosen/{id}', [UserController::class, 'destroy'])->name('dosen.destroy');
 });
 
 require __DIR__ . '/auth.php';

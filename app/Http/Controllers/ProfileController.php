@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Rules\MatchOldPassword;
-use Illuminate\Validation\Rules;
 use App\Models\User;
 use App\Models\Matkul;
 use App\Models\Prodi;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -22,7 +20,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('admin.user.profil_user', [
+        return view('admin.user.profile_edit', [
             'user' => $request->user(),
             'prodis' => Prodi::all(),
         ]);
@@ -31,17 +29,35 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updateInfo(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user->fill($request->validated());
+        
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
+        
+        $user->id_prodi = $request->input('prodi');
 
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('success', 'Data Telah Berhasil Di Ubah.');
+        return Redirect::route('profile.edit')->with('success', 'Informasi Profil Telah Berhasil Di Ubah.');
+    }
+
+    public function updatePassword(ProfileUpdateRequest $request): RedirectResponse
+    {
+        $user = $request->user();
+        $password = $request->input('password');
+        
+        if(!empty($password)){
+            $user->update([
+                'password' => Hash::make($password),
+            ]);
+        }
+        
+        return Redirect::route('profile.edit')->with('success', 'Password Telah Berhasil Di Ubah.');
     }
 
     /**

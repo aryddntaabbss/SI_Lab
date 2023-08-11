@@ -5,42 +5,32 @@
 @section('body')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        {{-- <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>User Profile</h1>
+                        <h1>Edit Profile</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
-        </section>
+        </section> --}}
 
         <!-- /.row -->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card mt-4">
                         <div class="card-body">
-                            @if (session('success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
                             
-                            <form method="post" action="{{ route('profile.update', $user->id) }}">
+                            
+                            <form method="post" action="{{ route('profile.updateInfo', $user->id) }}">
                                 @method('patch')
                                 @csrf
                                 <div class="col-11 mx-3 mt-3 mb-1">
-                                    <div class="mb-3">
-                                        <label for="nip" class="form-label">Nip :</label>
-                                        <input type="text" class="form-control" id="nip" placeholder="NIP Dosen"
-                                            name="id" value="{{ $user->id }}">
-                                        @error('id')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                    <div class="mb-3 mt-3">
+                                        <h3>Informasi Profil</h3>
+                                        <span>Perbarui Informasi Profil Akun Anda</span>
                                     </div>
             
                                     <div class="mb-3">
@@ -55,17 +45,6 @@
                                     </div>
             
                                     <div class="mb-3">
-                                        <label for="prodi" class="form-label">Prodi :</label>
-                                        <select class="form-control" id="prodi" name="prodi">
-                                            @foreach ($prodis as $prodi)
-                                                <option value="{{ $prodi->id }}" {{ $user->prodi->id == $prodi->id ? 'selected' : '' }}>
-                                                    {{ $prodi->nama_prodi }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-            
-                                    <div class="mb-3">
                                         <label for="email" class="form-label">Email :</label>
                                         <input type="email" class="form-control" id="email" placeholder="tes@gmail.com"
                                             name="email" value="{{ $user->email }}">
@@ -74,6 +53,33 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="prodi" class="form-label">Prodi :</label>
+                                        <select class="form-control" id="prodi" name="prodi">
+                                            @foreach ($prodis as $prodi)
+                                                <option value="{{ $prodi->id }}" {{ $user->prodi->id == $prodi->id ? 'selected' : '' }}>
+                                                    {{ $prodi->nama_prodi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>            
+                                </div>
+            
+                                <div class="d-grid gap-2 mx-4 mt-3">
+                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                </div>
+                            </form>
+
+                            <br><br>
+                            <form method="post" action="{{ route('profile.updatePassword', $user->id) }}">
+                                @method('patch')
+                                @csrf
+                                <div class="col-11 mx-3 mt-3 mb-1">
+                                    <div class="mb-3 mt-3">
+                                        <h3>Perbarui Kata Sandi</h3>
+                                        <span>Pastikan akun Anda menggunakan kata sandi acak yang panjang agar tetap aman.</span>
                                     </div>
                                     <div class="row mb-3 justify-content-between">
                                         <div class="col-lg-8 col-md-12">
