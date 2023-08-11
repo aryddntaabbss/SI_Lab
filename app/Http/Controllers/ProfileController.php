@@ -8,24 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Rules\MatchOldPassword;
+use Illuminate\Validation\Rules;
 use App\Models\User;
+use App\Models\Matkul;
+use App\Models\Prodi;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    public function index()
-    {
-        return view('admin.dosen.index', [
-            'users' => User::where('id', '<>', 1)->get(),
-        ]);
-    }
-
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('admin.user.profil_user', [
             'user' => $request->user(),
+            'prodis' => Prodi::all(),
         ]);
     }
 
@@ -42,27 +41,26 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Data Telah Berhasil Di Ubah.');
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy($id): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        $user = auth()->user(); // Mengambil user yang sedang login
 
-        $user = $request->user();
+        if ($user->id_role === 1) {
+            $dosen = User::find($id);
+            if ($dosen) {
+                Matkul::where('id_dosen', $id)->delete();
+                DB::table('users')->where('id', $id)->delete();
+                return redirect()->route('dosen.index')->with('success', 'Akun Berhasil Di Hapus');
+            }
+            return redirect()->route('adminDashboard')->with('error', 'Akun dosen tidak ditemukan.');
+        }
 
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::route('dosen.index')->with('success', 'Akun Berhasil Di Hapus');
+        return back()->with('error', 'Anda tidak memiliki izin untuk menghapus akun.');
     }
 }

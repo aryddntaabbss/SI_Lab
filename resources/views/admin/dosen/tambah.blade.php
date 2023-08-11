@@ -3,6 +3,7 @@
 @include('admin.layouts.sidebar')
 
 @section('body')
+    
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -17,7 +18,6 @@
         </section>
         <div class="container-fluid">
             <div class="col-12">
-
                 <form method="POST" action="{{ route('dosen.create') }}">
                     @csrf
                     <div class="col-10 mx-3 mt-3 mb-1">
@@ -33,6 +33,7 @@
                                 value="{{ old('name') }}">
                             <x-input-error :messages="$errors->get('name')" class="mt-2 text-danger" />
                         </div>
+
                         <div class="mb-3">
                             <label for="prodi" class="form-label">Prodi :</label>
                             <select class="form-control" id="prodi" name="prodi">
@@ -41,14 +42,17 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email :</label>
                             <input type="email" class="form-control" id="email" placeholder="tes@gmail.com"
                                 name="email">
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger" />
                         </div>
+
                         <div class="row mb-3 justify-content-between">
-                            <div class="col-7">
+                            <div class="col-lg-7 col-md-12">
+
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password :</label>
                                     <div class="input-group">
@@ -59,6 +63,7 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" />
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password :</label>
                                     <div class="input-group">
@@ -70,9 +75,9 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-danger" />
                                 </div>
-
                             </div>
-                            <div class="col-4">
+
+                            <div class="col-lg-4 col-md-12">
                                 <p class="mb-2">Password requirements</p>
                                 <p class="text-muted mb-2"> To create a new password, you have to meet all of the
                                     following requirements: </p>
@@ -84,9 +89,7 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="d-grid gap-2 mx-4 mt-3">
                         <button type="submit" class="btn btn-success">Simpan</button>
                     </div>

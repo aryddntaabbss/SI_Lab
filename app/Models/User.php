@@ -50,18 +50,24 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function matkul() : HasMany 
+    public function matkul(): HasMany
     {
         return $this->hasMany(Matkul::class);
     }
-    
-    public function prodi() : BelongsTo 
+
+    public function prodi(): BelongsTo
     {
         return $this->belongsTo(Prodi::class, 'id_prodi');
     }
 
-    public function role() : BelongsTo 
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'id_role');
     }
+
+    // public function delete()
+    // {
+    //     $this->matkul()->delete();
+    //     parent::delete();
+    // }
 }

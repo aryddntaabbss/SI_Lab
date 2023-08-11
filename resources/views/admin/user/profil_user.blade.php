@@ -16,34 +16,6 @@
             </div><!-- /.container-fluid -->
         </section>
 
-        {{-- <div class="row">
-            <div class="col-12">
-                <div class="col-8 mx-3 mt-3 mb-1">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nama Dosen</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nama">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Password">
-                    </div>
-                </div>
-                
-                
-                <div class="d-grid gap-2 mx-4 mt-3">
-                    <button type="submit" action="save" class="btn btn-primary">Tambah</button>
-                </div>
-                    
-
-                <!-- /.card -->
-            </div>
-        </div> --}}
         <!-- /.row -->
         <div class="container">
             <div class="row justify-content-center">
@@ -55,66 +27,121 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-
-                            <form method="POST">
+                            
+                            <form method="post" action="{{ route('profile.update', $user->id) }}">
+                                @method('patch')
                                 @csrf
-                                <div class="form-group">
-                                    <label for="name">Nama :</label>
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="Nama" required autocomplete="name" autofocus>
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="col-11 mx-3 mt-3 mb-1">
+                                    <div class="mb-3">
+                                        <label for="nip" class="form-label">Nip :</label>
+                                        <input type="text" class="form-control" id="nip" placeholder="NIP Dosen"
+                                            name="id" value="{{ $user->id }}">
+                                        @error('id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+            
+                                    <div class="mb-3">
+                                        <label for="nama" class="form-label">Nama :</label>
+                                        <input type="text" class="form-control" id="nama" placeholder="Username" name="name"
+                                            value="{{ $user->name }}">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+            
+                                    <div class="mb-3">
+                                        <label for="prodi" class="form-label">Prodi :</label>
+                                        <select class="form-control" id="prodi" name="prodi">
+                                            @foreach ($prodis as $prodi)
+                                                <option value="{{ $prodi->id }}" {{ $user->prodi->id == $prodi->id ? 'selected' : '' }}>
+                                                    {{ $prodi->nama_prodi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+            
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email :</label>
+                                        <input type="email" class="form-control" id="email" placeholder="tes@gmail.com"
+                                            name="email" value="{{ $user->email }}">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="row mb-3 justify-content-between">
+                                        <div class="col-lg-8 col-md-12">
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password Lama :</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="password" name="password">
+                                                    <button class="btn btn-outline-hidden" type="button" id="togglePassword">
+                                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="newPassword" class="form-label">Password Baru :</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="newPassword" name="newPassword">
+                                                    <button class="btn btn-outline-hidden" type="button" id="toggleNewPassword">
+                                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password_confirmation" class="form-label">Konfirmasi Password :</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="password_confirmation"
+                                                        name="password_confirmation" required autocomplete="new-password">
+                                                    <button class="btn btn-outline-hidden" type="button" id="toggleConfirmPassword">
+                                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+            
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <p class="mb-2">Password requirements</p>
+                                            <p class="text-muted mb-2"> To create a new password, you have to meet all of the
+                                                following requirements: </p>
+                                            <ul class="text-muted pl-4 mb-0">
+                                                <li> Minimum 8 character </li>
+                                                <li>At least one special character</li>
+                                                <li>At least one number</li>
+                                                <li>Can’t be the same as a previous password </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+            
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="email">Email :</label>
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="email@gmail.com" required autocomplete="email">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password Lama :</label>
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="old-password">
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password Baru :</label>
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="new-password">
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="password-confirm">Konfirmasi Password :</label>
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" autocomplete="new-password">
-                                </div>
-
-                                <div class="form-group mb-0">
-                                    <button type="submit" class="btn btn-primary">
-                                        Simpan
-                                    </button>
+            
+                                <div class="d-grid gap-2 mx-4 mt-3">
+                                    <button type="submit" class="btn btn-success">Simpan</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -123,6 +150,40 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePasswordButton = document.getElementById('togglePassword');
+            const toggleNewPasswordButton = document.getElementById('toggleNewPassword');
+            const toggleConfirmPasswordButton = document.getElementById('toggleConfirmPassword');
+            const passwordField = document.getElementById('password');
+            const newPasswordField = document.getElementById('newPassword');
+            const confirmPasswordField = document.getElementById('password_confirmation');
+
+            togglePasswordButton.addEventListener('click', function() {
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                } else {
+                    passwordField.type = 'password';
+                }
+            });
+
+            toggleNewPasswordButton.addEventListener('click', function() {
+                if (newPasswordField.type === 'password') {
+                    newPasswordField.type = 'text';
+                } else {
+                    newPasswordField.type = 'password';
+                }
+            });
+
+            toggleConfirmPasswordButton.addEventListener('click', function() {
+                if (confirmPasswordField.type === 'password') {
+                    confirmPasswordField.type = 'text';
+                } else {
+                    confirmPasswordField.type = 'password';
+                }
+            });
+        });
+    </script>
 
     @include('admin.layouts.footer')
 @endsection

@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class RegisteredUserController extends Controller
 {
+    public function index()
+    {
+        return view('admin.dosen.index', [
+            'users' => User::where('id', '<>', 1)->get(),
+        ]);
+    }
+    
     /**
      * Display the registration view.
      */
@@ -55,6 +62,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return Redirect::route('dosen.create')->with('success', 'Dosen Berhasil Di Tambahkan');
+        return Redirect::route('dosen.create')->with('success', 'Akun Berhasil Di Tambahkan');
     }
 }

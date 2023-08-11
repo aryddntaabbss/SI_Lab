@@ -79,7 +79,7 @@
                 {{-- User --}}
                 <li class="nav-header">USERS</li>
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/profil-user') }}" class="nav-link {{ Request::is('/dashboard/profil-user') ? 'active' : '' }}">
+                    <a href="{{ route('profile.edit') }}" class="nav-link {{ Request::is('/dashboard/profile') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-address-card"></i>
                         <p>
                             Profil User

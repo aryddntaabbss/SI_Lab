@@ -10,7 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 
 Route::middleware('guest')->group(function () {
 
@@ -56,8 +56,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard/dosen', [RegisteredUserController::class, 'index'])->name('dosen.index');
 
-    Route::get('/dashboard/dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
+    Route::get('/dashboard/tambah-dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
 
-    Route::post('/dashboard/dosen', [RegisteredUserController::class, 'store']);
+    Route::post('/dashboard/tambah-dosen', [RegisteredUserController::class, 'store']);
 });
