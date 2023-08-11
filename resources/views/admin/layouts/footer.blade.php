@@ -1,7 +1,9 @@
   <footer class="main-footer">
-      <strong>Copyright &copy; 2023 <a href="#">Lab Komputer Fakultas Teknik</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-          <b>Version</b> 1.0
-      </div>
+    <div class="row text-center">
+        <div class="col-12 col-sm-12">
+            <strong>Copyright &copy; 2023 <a href="#">Lab Komputer Fakultas Teknik</a>.</strong>
+            <br>
+            All rights reserved.<br>Version 1.0
+        </div>
+    </div>
   </footer>
