@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-primary elevation-6">
+<aside class="main-sidebar sidebar-primary elevation-6" style="background-color: white ">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         <img src="{{ asset('assets/img/unkhair.png') }}" alt="Logo" class="brand-image " style="opacity: .8">
@@ -38,7 +38,8 @@
                 <li class="nav-header">INTERFACE</li>
                 {{-- Kelola data --}}
                 <li class="nav-item">
-                    <a href="{{ route('dosen.index') }}" class="nav-link {{ Request::is('/dashboard/dosen') ? 'active' : '' }}">
+                    <a href="{{ route('dosen.index') }}"
+                        class="nav-link {{ Request::is('/dashboard/dosen') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
                         <p>
                             Dosen
@@ -46,7 +47,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/matakuliah') }}" class="nav-link {{ Request::is('/dashboard/matakuliah') ? 'active' : '' }}">
+                    <a href="{{ url('/dashboard/matakuliah') }}"
+                        class="nav-link {{ Request::is('/dashboard/matakuliah') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Mata Kuliah
@@ -63,13 +65,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard/kelola') }}" class="nav-link {{ Request::is('/dashboard/kelola') ? 'active' : '' }}">
+                            <a href="{{ url('/dashboard/kelola') }}"
+                                class="nav-link {{ Request::is('/dashboard/kelola') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kelola</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard/informasi') }}" class="nav-link {{ Request::is('/dashboard/informasi') ? 'active' : '' }}">
+                            <a href="{{ url('/dashboard/informasi') }}"
+                                class="nav-link {{ Request::is('/dashboard/informasi') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Informasi</p>
                             </a>
@@ -79,7 +83,8 @@
                 {{-- User --}}
                 <li class="nav-header">USERS</li>
                 <li class="nav-item">
-                    <a href="{{ route('profile.edit') }}" class="nav-link {{ Request::is('/dashboard/profile') ? 'active' : '' }}">
+                    <a href="{{ route('profile.edit') }}"
+                        class="nav-link {{ Request::is('/dashboard/profile') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-address-card"></i>
                         <p>
                             Profil User
