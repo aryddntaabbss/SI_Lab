@@ -24,9 +24,9 @@
                         <div class="card-body">
                             
                             
-                            <form method="post" action="{{ route('profile.updateInfo', $user->id) }}">
-                                @method('patch')
+                            <form method="POST" action="{{ route('profile.updateInfo', $user->id) }}">
                                 @csrf
+                                @method('patch')
                                 <div class="col-11 mx-3 mt-3 mb-1">
                                     <div class="mb-3 mt-3">
                                         <h3>Informasi Profil</h3>
@@ -73,9 +73,10 @@
                             </form>
 
                             <br><br>
-                            <form method="post" action="{{ route('password.update') }}">
-                                @method('put')
+
+                            <form method="POST" action="{{ route('profile.updatePass') }}">
                                 @csrf
+                                @method('patch')
                                 <div class="col-11 mx-3 mt-3 mb-1">
                                     <div class="mb-3 mt-3">
                                         <h3>Perbarui Kata Sandi</h3>
@@ -97,10 +98,11 @@
                                                     </span>
                                                 @enderror
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="Password" class="form-label">Password Baru :</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="Password" name="password">
+                                                    <input type="password" class="form-control" id="password" name="password">
                                                     <button class="btn btn-outline-hidden" type="button" id="togglePassword">
                                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                                     </button>
@@ -111,6 +113,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="password_confirmation" class="form-label">Konfirmasi Password :</label>
                                                 <div class="input-group">
@@ -126,8 +129,9 @@
                                                     </span>
                                                 @enderror
                                             </div>
-            
                                         </div>
+
+                                        {{-- Ketentuan password --}}
                                         <div class="col-lg-4 col-md-12">
                                             <p class="mb-2">Password requirements</p>
                                             <p class="text-muted mb-2"> To create a new password, you have to meet all of the
@@ -139,6 +143,7 @@
                                                 <li>Can’t be the same as a previous password </li>
                                             </ul>
                                         </div>
+
                                     </div>
             
                                 </div>
@@ -158,15 +163,17 @@
     <!-- /.content-wrapper -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             const toggleCurrentPasswordButton = document.getElementById('toggleCurrentPassword');
             const togglePasswordButton = document.getElementById('togglePassword');
             const toggleConfirmPasswordButton = document.getElementById('toggleConfirmPassword');
+
             const currentPasswordField = document.getElementById('current_password');
-            const PasswordField = document.getElementById('password');
+            const passwordField = document.getElementById('password');
             const confirmPasswordField = document.getElementById('password_confirmation');
 
             toggleCurrentPasswordButton.addEventListener('click', function() {
-                if (CurrentPasswordField.type === 'password') {
+                if (currentPasswordField.type === 'password') {
                     currentPasswordField.type = 'text';
                 } else {
                     currentPasswordField.type = 'password';

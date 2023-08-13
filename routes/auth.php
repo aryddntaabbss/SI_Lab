@@ -66,9 +66,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
-    Route::patch('/dashboard/profile/info', [ProfileController::class, 'update'])->name('profile.updateInfo');
+    Route::patch('/dashboard/profile/info', [ProfileController::class, 'updateInfo'])->name('profile.updateInfo');
 
-    // Route::put('/dashboard/profile/password', [PasswordController::class, 'update'])->name('profile.updatePassword');
+    Route::patch('/dashboard/profile/password', [ProfileController::class, 'updatePass'])->name('profile.updatePass');
 
 
     

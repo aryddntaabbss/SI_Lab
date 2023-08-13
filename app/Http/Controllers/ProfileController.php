@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -29,7 +30,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updateInfo(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
 
@@ -46,20 +47,21 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('success', 'Informasi Profil Telah Berhasil Di Ubah.');
     }
 
-    // public function updatePassword(ProfileUpdateRequest $request): RedirectResponse
-    // {
-    //     $user = $request->user();
+    public function updatePass(PasswordUpdateRequest $request): RedirectResponse
+    {
+        $user = $request->user();
         
-    //     $password = $request->input('password');
+        $password = $request->input('password');
         
-    //     if(!empty($password)){
-    //         $user->update([
-    //             'password' => Hash::make($password),
-    //         ]);
-    //     }
+        if (!empty($password)) {
+            $user->update([
+                'password' => Hash::make($password),
+            ]);
+        }
         
-    //     return Redirect::route('profile.edit')->with('success', 'Password Telah Berhasil Di Ubah.');
-    // }
+        return Redirect::route('profile.edit')->with('success', 'Password Telah Berhasil Di Ubah.');
+    }
+
 
     /**
      * Delete the user's account.

@@ -2,7 +2,7 @@
 
 @section('body')
     <!-- Main content -->
-    <!-- Go back -->
+    <!-- Kembali Ke beranda -->
     <a href="{{ url('/') }}"
         class="btn btn-white btn-icon-only rounded-circle position-absolute zindex-101 left-4 top-4 d-none d-lg-inline-flex"
         data-toggle="tooltip" data-placement="right" title="Go back">
@@ -10,8 +10,8 @@
             <i data-feather="arrow-left"></i>
         </span>
     </a>
-    <!-- Side cover login -->
     <section>
+        <!-- Side cover login -->
         <div class="bg-primary position-absolute h-100 top-0 left-0 zindex-100 col-lg-6 col-xl-6 zindex-100 d-none d-lg-flex flex-column justify-content-end"
             data-bg-size="cover" data-bg-position="center">
             <!-- Cover image -->
@@ -23,22 +23,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- Form login -->
         <div class="container-fluid d-flex flex-column">
             <div class="row align-items-center justify-content-center justify-content-lg-end min-vh-100">
                 <div class="col-sm-7 col-lg-6 col-xl-6 py-6 py-md-0">
                     <div class="row justify-content-center">
                         <div class="col-11 col-lg-10 col-xl-6">
                             <div>
+                                <!-- Judul -->
                                 <div class="mb-5">
-                                    <h6 class="h3 mb-1">Welcome back!</h6>
+                                    <h6 class="h3 mb-1">Selamat Datang !</h6>
                                     <p class="text-muted mb-0">
-                                        Sign in to your account to continue.
+                                        Masukan akun anda untuk melanjutkan.
                                     </p>
                                 </div>
+
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="form-control-label">Email address</label>
+                                        <label class="form-control-label">Email</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i data-feather="user"></i></span>
@@ -50,6 +54,7 @@
                                             @enderror
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div>
@@ -61,6 +66,7 @@
                                                     data-toggle="password-text" data-target="#password">Show password</a>
                                             </div>
                                         </div>
+
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i data-feather="key"></i></span>
@@ -72,6 +78,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    
                                     <button type="submit" class="btn btn-block btn-primary">Masuk</button>
                                     <div class="d-flex mt-3">
                                         @if (Route::has('password.request'))
@@ -81,6 +88,7 @@
                                         @endif
                                     </div>
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
