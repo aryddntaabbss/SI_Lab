@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Matkul extends Model
 {
@@ -15,13 +16,13 @@ class Matkul extends Model
 
     protected $guarded = ['id'];
 
-    public function jadwal() : HasMany 
+    public function jadwal() : HasOne 
     {
-        return $this->hasMany(Jadwal::class);
+        return $this->hasOne(Jadwal::class);
     }
     
     public function user() : BelongsTo 
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_dosen');
     }
 }

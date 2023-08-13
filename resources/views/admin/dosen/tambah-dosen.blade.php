@@ -20,7 +20,7 @@
             <div class="col-12">
                 <form method="POST" action="{{ route('dosen.create') }}">
                     @csrf
-                    <div class="col-10 mx-3 mt-3 mb-1">
+                    <div class="col-10 col-sm-12 mx-3 mt-3 mb-1">
                         <div class="mb-3">
                             <label for="nip" class="form-label">Nip :</label>
                             <input type="text" class="form-control" id="nip" placeholder="NIP Dosen"
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="row mb-3 justify-content-between">
-                            <div class="col-lg-7 col-md-12">
+                            <div class="col-lg-8 col-md-12">
 
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password :</label>
@@ -75,24 +75,25 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-danger" />
                                 </div>
+                                
+                                <div class="d-grid gap-2 my-3">
+                                    <button id="responsiveButton" type="submit" class="btn btn-success">Simpan</button>
+                                </div>
                             </div>
 
                             <div class="col-lg-4 col-md-12">
-                                <p class="mb-2">Password requirements</p>
-                                <p class="text-muted mb-2"> To create a new password, you have to meet all of the
-                                    following requirements: </p>
+                                <p class="mb-2">Ketentuan Password</p>
+                                <p class="text-muted mb-2"> Untuk membuat password baru, pastikan untuk mengikuti ketentuan berikut : </p>
                                 <ul class="text-muted pl-4 mb-0">
-                                    <li> Minimum 8 character </li>
-                                    <li>At least one special character</li>
-                                    <li>At least one number</li>
-                                    <li>Can’t be the same as a previous password </li>
+                                    <li> Minimal 8 karakter </li>
+                                    <li> Memiliki karakter spesial ($@#) </li>
+                                    <li> Memiliki Angka (123)</li>
+                                    <li> Tidak bisa sama dengan password sebelumnya </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="d-grid gap-2 mx-4 mt-3">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                    </div>
+                    
                 </form>
 
                 <!-- /.card -->
@@ -104,6 +105,13 @@
     </div>
     <!-- /.content-wrapper -->
     <script>
+        var button = document.getElementById('responsiveButton');
+        var isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+        if (isMobile) {
+            button.classList.add('btn-block');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const togglePasswordButton = document.getElementById('togglePassword');
             const toggleConfirmPasswordButton = document.getElementById('toggleConfirmPassword');

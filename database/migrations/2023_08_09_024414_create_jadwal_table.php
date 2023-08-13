@@ -14,11 +14,7 @@ return new class extends Migration
         Schema::create('jadwal', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_matkul')->references('id')->on('matkul');
-            $table->foreignId('id_dosen')->references('id')->on('users');
-            $table->foreignId('id_prodi')->references('id')->on('prodi');
-            $table->string('kelas');
-            $table->smallInteger('semester')->unsigned();
-            $table->date('hari_tanggal');
+            $table->foreignId('id_hari')->references('id')->on('hari');
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');
             $table->timestamps();

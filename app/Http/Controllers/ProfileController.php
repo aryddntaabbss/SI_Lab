@@ -29,7 +29,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function updateInfo(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
 
@@ -46,19 +46,20 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('success', 'Informasi Profil Telah Berhasil Di Ubah.');
     }
 
-    public function updatePassword(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $user = $request->user();
-        $password = $request->input('password');
+    // public function updatePassword(ProfileUpdateRequest $request): RedirectResponse
+    // {
+    //     $user = $request->user();
         
-        if(!empty($password)){
-            $user->update([
-                'password' => Hash::make($password),
-            ]);
-        }
+    //     $password = $request->input('password');
         
-        return Redirect::route('profile.edit')->with('success', 'Password Telah Berhasil Di Ubah.');
-    }
+    //     if(!empty($password)){
+    //         $user->update([
+    //             'password' => Hash::make($password),
+    //         ]);
+    //     }
+        
+    //     return Redirect::route('profile.edit')->with('success', 'Password Telah Berhasil Di Ubah.');
+    // }
 
     /**
      * Delete the user's account.

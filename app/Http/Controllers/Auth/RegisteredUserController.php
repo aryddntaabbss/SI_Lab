@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
 {
     public function index()
     {
-        return view('admin.dosen.index', [
+        return view('admin.dosen.index-dosen', [
             'users' => User::where('id', '<>', 1)->get(),
         ]);
     }
@@ -30,7 +30,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('admin.dosen.tambah', [
+        return view('admin.dosen.tambah-dosen', [
             'prodis' => Prodi::all(),
             'role' => Role::where('id', 2)->first(),
         ]);
@@ -62,6 +62,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return Redirect::route('dosen.create')->with('success', 'Akun Berhasil Di Tambahkan');
+        return Redirect::route('dosen.index')->with('success', 'Akun Berhasil Di Tambahkan');
     }
 }

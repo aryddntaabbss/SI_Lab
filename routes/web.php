@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,14 +22,26 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
 // ****** ADMIN ******
 // INTERFACE
-Route::get('/dashboard/matakuliah', function () {
-    return view('admin/matakuliah/index');
-});
-Route::get('/dashboard/tambah-matkul', function () {
-    return view('admin/matakuliah/tambah');
-});
+
+// MATA KULIAH
+Route::get('/dashboard/matakuliah', [MatkulController::class, 'index'])->name('matkul.index');
+
+Route::get('/dashboard/matakuliah/tambah', [MatkulController::class, 'create'])->name('matkul.create');
+
+Route::post('/dashboard/matakuliah/tambah', [MatkulController::class, 'store']);
+
+Route::get('/dashboard/matakuliah/edit', [MatkulController::class, 'edit'])->name('matkul.edit');
+
+Route::patch('/dashboard/matakuliah/edit', [MatkulController::class, 'update']);
+
+Route::delete('/dashboard/matakuliah/tambah', [MatkulController::class, 'destroy'])->name('matkul.delete');
 
 
 
@@ -40,29 +53,12 @@ Route::get('dashboard/informasi', function () {
     return view('admin/jadwal/info');
 });
 
-// Edit | Tambah
+// Edit |
 Route::get('/edit-jadwal', function () {
     return view('admin/layouts/edit-jadwal');
 });
 Route::get('/tambah-jadwal', function () {
     return view('admin/layouts/tambah-jadwal');
-});
-
-// User
-// Route::get('/tambah-user', function () {
-//     return view('admin/user/tambah_user');
-// });
-// Route::get('/dashboard/profil-user', function () {
-//     return view('admin/user/profil_user');
-// });
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {  
-    Route::get('/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/dashboard/profile/info', [ProfileController::class, 'updateInfo'])->name('profile.updateInfo');
-    Route::patch('/dashboard/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
-    Route::delete('/dashboard/dosen/{id}', [ProfileController::class, 'destroy'])->name('dosen.delete');
 });
 
 require __DIR__ . '/auth.php';

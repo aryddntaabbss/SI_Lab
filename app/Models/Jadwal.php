@@ -14,13 +14,13 @@ class Jadwal extends Model
 
     protected $guarded = ['id'];
 
-    public function Dosen(): BelongsTo
+    public function matkul(): BelongsTo
     {
-        return $this->belongsTo(Kelas::class,'nip');
+        return $this->belongsTo(Matkul::class,'id_matkul', 'id_kelas');
     }
-
-    public function Matkul(): BelongsTo
+    
+    public function hari(): BelongsTo
     {
-        return $this->belongsTo(Kelas::class,'id_matkul');
+        return $this->belongsTo(Hari::class,'id_hari');
     }
 }

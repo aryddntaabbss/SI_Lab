@@ -10,7 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 Route::middleware('guest')->group(function () {
 
@@ -61,4 +61,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/tambah-dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
 
     Route::post('/dashboard/tambah-dosen', [RegisteredUserController::class, 'store']);
+
+    
+
+    Route::get('/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    Route::patch('/dashboard/profile/info', [ProfileController::class, 'update'])->name('profile.updateInfo');
+
+    // Route::put('/dashboard/profile/password', [PasswordController::class, 'update'])->name('profile.updatePassword');
+
+
+    
+    Route::delete('/dashboard/dosen/{id}', [ProfileController::class, 'destroy'])->name('dosen.delete');
 });

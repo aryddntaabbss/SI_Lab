@@ -73,8 +73,8 @@
                             </form>
 
                             <br><br>
-                            <form method="post" action="{{ route('profile.updatePassword', $user->id) }}">
-                                @method('patch')
+                            <form method="post" action="{{ route('password.update') }}">
+                                @method('put')
                                 @csrf
                                 <div class="col-11 mx-3 mt-3 mb-1">
                                     <div class="mb-3 mt-3">
@@ -84,28 +84,28 @@
                                     <div class="row mb-3 justify-content-between">
                                         <div class="col-lg-8 col-md-12">
                                             <div class="mb-3">
-                                                <label for="password" class="form-label">Password Lama :</label>
+                                                <label for="current_password" class="form-label">Password Lama :</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="password" name="password">
-                                                    <button class="btn btn-outline-hidden" type="button" id="togglePassword">
+                                                    <input type="password" class="form-control" id="current_password" name="current_password">
+                                                    <button class="btn btn-outline-hidden" type="button" id="toggleCurrentPassword">
                                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
-                                                @error('name')
+                                                @error('current_password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <label for="newPassword" class="form-label">Password Baru :</label>
+                                                <label for="Password" class="form-label">Password Baru :</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="newPassword" name="newPassword">
-                                                    <button class="btn btn-outline-hidden" type="button" id="toggleNewPassword">
+                                                    <input type="password" class="form-control" id="Password" name="password">
+                                                    <button class="btn btn-outline-hidden" type="button" id="togglePassword">
                                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
-                                                @error('name')
+                                                @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -120,7 +120,7 @@
                                                         <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
-                                                @error('name')
+                                                @error('password_confirmation')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -158,26 +158,26 @@
     <!-- /.content-wrapper -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const toggleCurrentPasswordButton = document.getElementById('toggleCurrentPassword');
             const togglePasswordButton = document.getElementById('togglePassword');
-            const toggleNewPasswordButton = document.getElementById('toggleNewPassword');
             const toggleConfirmPasswordButton = document.getElementById('toggleConfirmPassword');
-            const passwordField = document.getElementById('password');
-            const newPasswordField = document.getElementById('newPassword');
+            const currentPasswordField = document.getElementById('current_password');
+            const PasswordField = document.getElementById('password');
             const confirmPasswordField = document.getElementById('password_confirmation');
+
+            toggleCurrentPasswordButton.addEventListener('click', function() {
+                if (CurrentPasswordField.type === 'password') {
+                    currentPasswordField.type = 'text';
+                } else {
+                    currentPasswordField.type = 'password';
+                }
+            });
 
             togglePasswordButton.addEventListener('click', function() {
                 if (passwordField.type === 'password') {
                     passwordField.type = 'text';
                 } else {
                     passwordField.type = 'password';
-                }
-            });
-
-            toggleNewPasswordButton.addEventListener('click', function() {
-                if (newPasswordField.type === 'password') {
-                    newPasswordField.type = 'text';
-                } else {
-                    newPasswordField.type = 'password';
                 }
             });
 

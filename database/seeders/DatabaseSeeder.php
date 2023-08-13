@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        // Isi data role ke tabel role
         DB::table('role')->insert([
             'name' => 'Admin'
         ]);
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Dosen'
         ]);
 
-
+        // Isi data prodi ke tabel prodi
         DB::table('prodi')->insert([
             'nama_prodi' => 'Informatika'
         ]);
@@ -45,6 +46,34 @@ class DatabaseSeeder extends Seeder
             'nama_prodi' => 'Arsitektur'
         ]);
 
+        // Isi data hari ke tabel hari
+        DB::table('hari')->insert([
+            'nama_hari' => 'Senin',
+            'waktu_buka' => '07:30:00',
+            'waktu_tutup' => '17:00:00'
+        ]);
+        DB::table('hari')->insert([
+            'nama_hari' => 'Selasa',
+            'waktu_buka' => '07:30:00',
+            'waktu_tutup' => '17:00:00'
+        ]);
+        DB::table('hari')->insert([
+            'nama_hari' => 'Rabu',
+            'waktu_buka' => '07:30:00',
+            'waktu_tutup' => '17:00:00'
+        ]);
+        DB::table('hari')->insert([
+            'nama_hari' => 'Kamis',
+            'waktu_buka' => '07:30:00',
+            'waktu_tutup' => '17:00:00'
+        ]);
+        DB::table('hari')->insert([
+            'nama_hari' => 'Jumat',
+            'waktu_buka' => '07:30:00',
+            'waktu_tutup' => '12:00:00'
+        ]);
+
+        // Isi data User ke tabel User
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
@@ -62,14 +91,32 @@ class DatabaseSeeder extends Seeder
         ]);
         
         \App\Models\User::factory()->create([
-            'name' => 'Dosen2',
+            'name' => 'Agil Aryaddinata',
             'email' => 'dosen2@gmail.com',
             'password' => bcrypt('dosen123'),
             'id_prodi' => 3,
             'id_role' => 2,
         ]);
 
+        \App\Models\User::factory()->create([
+            'name' => 'Alriskhandy',
+            'email' => 'dosen3@gmail.com',
+            'password' => bcrypt('dosen123'),
+            'id_prodi' => 1,
+            'id_role' => 2,
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Husnul Hidayat',
+            'email' => 'dosen4@gmail.com',
+            'password' => bcrypt('dosen123'),
+            'id_prodi' => 6,
+            'id_role' => 2,
+        ]);
+
+        // Isi data matkul ke tabel matkul
         DB::table('matkul')->insert([
+            'kode_matkul' => 'TIF5642',
             'nama_matkul' => 'Keamanan Data',
             'id_dosen' => 2,
             'kelas' => '4IF2',

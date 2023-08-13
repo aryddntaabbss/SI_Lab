@@ -64,10 +64,4 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'id_role');
     }
-
-    // public function delete()
-    // {
-    //     $this->matkul()->delete();
-    //     parent::delete();
-    // }
 }
