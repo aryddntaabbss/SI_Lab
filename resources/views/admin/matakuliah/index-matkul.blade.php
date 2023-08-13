@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>PENGELOLAAN JADWAL</h1>
+                        <h1>PENGELOLAAN MATA KULIAH</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -41,7 +41,7 @@
                         <td>
                             <div class="row">
                                 <div class="col-6">
-                                    <form method="GET" action="{{ route('matkul.edit') }}">
+                                    <form method="GET" action="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}">
                                         @csrf  
                                         <button type="submit" class="btn btn-success">EDIT</button>
                                     </form>
@@ -64,9 +64,9 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                    <form action="#" method="POST">
+                                                    <form method="POST" action="{{ route('matkul.delete', ['matkul' => $matkul->id]) }}">
                                                         @csrf
-                                                        @method('DELETE')
+                                                        @method('delete')
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
                                                     </form>
                                                 </div>

@@ -48,21 +48,45 @@ class MatkulController extends Controller
         return Redirect::route('matkul.index')->with('success', 'Mata Kuliah Berhasil Di Tambahkan');
     }
 
-    public function edit()
+    public function edit(Matkul $matkul)
     {
-        return view('admin.matakuliah.edit-matkul', [
-            'mata_kuliah' => Matkul::all(),
-            'Users' => User::all(),
+        // Mengisi variabel $users dengan data dosen (id_role = 2)
+        $users = User::where('id_role', 2)->get();
+
+        // Tampil halaman edit membawa 2 variabel matkul & users
+        return view('admin.matakuliah.edit-matkul', compact('matkul', 'users'));
+    }
+
+    public function update(Request $request, Matkul $matkul)
+    {
+        // dd($request);
+        $request->validate([
+            'kode_matkul' => ['required'],
+            'matkul' => ['required', 'string', 'max:255'],
+            'dosen' => ['required'],
+            'kelas' => ['required'],
+            'sks' => ['required'],
+            'semester' => ['required'],
         ]);
+
+        $matkul->update([
+            'kode_matkul' => $request->kode_matkul,
+            'nama_matkul' => $request->matkul,
+            'id_dosen' => $request->dosen,
+            'kelas' => $request->kelas,
+            'sks' => $request->sks,
+            'semester' => $request->semester,
+        ]);
+
+        return redirect()->route('matkul.index')->with('success', 'Data Mata Kuliah Berhasil Diperbarui');
     }
 
-    public function update()
+
+    public function destroy(Matkul $matkul)
     {
-        //
+        $matkul->delete();
+
+        return redirect()->route('matkul.index')->with('success', 'Data Mata Kuliah Berhasil Dihapus');
     }
 
-    public function destroy()
-    {
-        //
-    }
 }

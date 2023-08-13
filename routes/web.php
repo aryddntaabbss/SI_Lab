@@ -31,17 +31,21 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 // INTERFACE
 
 // MATA KULIAH
-Route::get('/dashboard/matakuliah', [MatkulController::class, 'index'])->name('matkul.index');
+Route::prefix('dashboard/matakuliah')->group(function () {
 
-Route::get('/dashboard/matakuliah/tambah', [MatkulController::class, 'create'])->name('matkul.create');
+    Route::get('/', [MatkulController::class, 'index'])->name('matkul.index');
 
-Route::post('/dashboard/matakuliah/tambah', [MatkulController::class, 'store']);
+    Route::get('/tambah', [MatkulController::class, 'create'])->name('matkul.create');
 
-Route::get('/dashboard/matakuliah/edit', [MatkulController::class, 'edit'])->name('matkul.edit');
+    Route::post('/tambah', [MatkulController::class, 'store'])->name('matkul.store');
 
-Route::patch('/dashboard/matakuliah/edit', [MatkulController::class, 'update']);
+    Route::get('/{matkul}/edit', [MatkulController::class, 'edit'])->name('matkul.edit');
 
-Route::delete('/dashboard/matakuliah/tambah', [MatkulController::class, 'destroy'])->name('matkul.delete');
+    Route::patch('/{matkul}/edit', [MatkulController::class, 'update'])->name('matkul.update');
+
+    Route::delete('/{matkul}', [MatkulController::class, 'destroy'])->name('matkul.delete');
+});
+
 
 
 
