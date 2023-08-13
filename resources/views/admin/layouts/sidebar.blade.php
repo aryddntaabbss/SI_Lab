@@ -37,6 +37,7 @@
                 </li>
                 <li class="nav-header">INTERFACE</li>
 
+                @can('IsAdmin')
                 {{-- Kelola Dosen --}}
                 <li class="nav-item">
                     <a href="{{ route('dosen.index') }}"
@@ -47,6 +48,7 @@
                         </p>
                     </a>
                 </li>
+                @endcan
 
                 {{-- Kelola Mata Kuliah --}}
                 <li class="nav-item">
@@ -59,6 +61,7 @@
                     </a>
                 </li>
 
+                @can('IsAdmin')
                 {{-- Kelola Jadwal --}}
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link {{ Request::is('/dashboard/jadwal') ? 'active' : '' }}">
@@ -85,6 +88,7 @@
                         </li>
                     </ul>
                 </li>
+                @endcan
                 {{-- User --}}
                 <li class="nav-header">USERS</li>
                 <li class="nav-item">

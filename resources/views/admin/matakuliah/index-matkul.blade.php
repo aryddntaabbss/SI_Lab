@@ -30,57 +30,109 @@
                 </thead>
                 <!-- /.tabel-body -->
                 <tbody>
-                    @foreach($mata_kuliah as $matkul)
-                    <tr>
-                        <td>{{ $matkul->kode_matkul }}</td>
-                        <td>{{ $matkul->nama_matkul }}</td>
-                        <td>{{ $matkul->user->name }}</td>
-                        <td>{{ $matkul->kelas }}</td>
-                        <td>{{ $matkul->sks }}</td>
-                        <td>{{ $matkul->semester }}</td>
-                        <td>
-                            <div class="row">
-                                <div class="col-6">
-                                    <form method="GET" action="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}">
-                                        @csrf  
-                                        <button type="submit" class="btn btn-success">EDIT</button>
-                                    </form>
-                                </div>
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal{{ $matkul->id }}">Hapus</button>
-    
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="confirmDeleteModal{{ $matkul->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus Mata Kuliah</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Apakah Anda yakin ingin menghapus mata kuliah ini?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                    <form method="POST" action="{{ route('matkul.delete', ['matkul' => $matkul->id]) }}">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    </form>
+                    @can('IsAdmin')
+                        @foreach($mata_kuliah as $matkul)
+                        <tr>
+                            <td>{{ $matkul->kode_matkul }}</td>
+                            <td>{{ $matkul->nama_matkul }}</td>
+                            <td>{{ $matkul->user->name }}</td>
+                            <td>{{ $matkul->kelas }}</td>
+                            <td>{{ $matkul->sks }}</td>
+                            <td>{{ $matkul->semester }}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <form method="GET" action="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}">
+                                            @csrf  
+                                            <button type="submit" class="btn btn-success">EDIT</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal{{ $matkul->id }}">Hapus</button>
+        
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="confirmDeleteModal{{ $matkul->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus Mata Kuliah</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus mata kuliah ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                        <form method="POST" action="{{ route('matkul.delete', ['matkul' => $matkul->id]) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             
-
+                            </td>
+                        </tr>
+                        @endforeach
+                    @elsecan('IsDosen')
+                        @foreach($mata_kuliah as $matkul)
+                        @if($matkul->user->id === auth()->user()->id)
+                        <tr>
+                            <td>{{ $matkul->kode_matkul }}</td>
+                            <td>{{ $matkul->nama_matkul }}</td>
+                            <td>{{ $matkul->user->name }}</td>
+                            <td>{{ $matkul->kelas }}</td>
+                            <td>{{ $matkul->sks }}</td>
+                            <td>{{ $matkul->semester }}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <form method="GET" action="{{ route('matkul.edit', ['matkul' => $matkul->id]) }}">
+                                            @csrf  
+                                            <button type="submit" class="btn btn-success">EDIT</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal{{ $matkul->id }}">Hapus</button>
+        
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="confirmDeleteModal{{ $matkul->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus Mata Kuliah</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin ingin menghapus mata kuliah ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                        <form method="POST" action="{{ route('matkul.delete', ['matkul' => $matkul->id]) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             
-                        </td>
-                    </tr>
-                    @endforeach
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    @endcan
                 </tbody>
             </table>
         </div>

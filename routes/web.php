@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MatkulController;
+use App\Http\Controllers\RegisteredUSerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,29 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 
 // ****** ADMIN ******
-Route::prefix('admin/dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
     // INTERFACE
-    // Dosen
+    // Jadwal
+    Route::get('dashboard/kelola', function () {
+        return view('admin/jadwal/kelola');
+    });
+    Route::get('dashboard/informasi', function () {
+        return view('admin/jadwal/info');
+    });
 
+    // Edit |
+    Route::get('/edit-jadwal', function () {
+        return view('admin/layouts/edit-jadwal');
+    });
+    Route::get('/tambah-jadwal', function () {
+        return view('admin/layouts/tambah-jadwal');
+    });
+    
+});
+
+
+// ****** DASHBOARD ******
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     // Mata kuliah
     Route::get('/matakuliah', [MatkulController::class, 'index'])->name('matkul.index');
 
@@ -45,29 +65,13 @@ Route::prefix('admin/dashboard')->middleware(['auth', 'IsAdmin'])->group(functio
 
     Route::delete('/matakuliah/{matkul}', [MatkulController::class, 'destroy'])->name('matkul.delete');
 
+    // Edit Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    Route::patch('/profile/info', [ProfileController::class, 'updateInfo'])->name('profile.updateInfo');
+
+    Route::patch('/profile/password', [ProfileController::class, 'updatePass'])->name('profile.updatePass');
 });
 
-
-
-
-
-
-
-
-// Jadwal
-Route::get('dashboard/kelola', function () {
-    return view('admin/jadwal/kelola');
-});
-Route::get('dashboard/informasi', function () {
-    return view('admin/jadwal/info');
-});
-
-// Edit |
-Route::get('/edit-jadwal', function () {
-    return view('admin/layouts/edit-jadwal');
-});
-Route::get('/tambah-jadwal', function () {
-    return view('admin/layouts/tambah-jadwal');
-});
 
 require __DIR__ . '/auth.php';

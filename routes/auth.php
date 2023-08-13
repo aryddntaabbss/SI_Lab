@@ -55,22 +55,13 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard/dosen', [RegisteredUserController::class, 'index'])->name('dosen.index');
+Route::prefix('dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
+    // Dosen
+    Route::get('/dosen', [RegisteredUserController::class, 'index'])->name('dosen.index');
 
-    Route::get('/dashboard/tambah-dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
+    Route::get('/tambah-dosen', [RegisteredUserController::class, 'create'])->name('dosen.create');
 
-    Route::post('/dashboard/tambah-dosen', [RegisteredUserController::class, 'store']);
+    Route::post('/tambah-dosen', [RegisteredUserController::class, 'store']);
 
-    
-
-    Route::get('/dashboard/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
-    Route::patch('/dashboard/profile/info', [ProfileController::class, 'updateInfo'])->name('profile.updateInfo');
-
-    Route::patch('/dashboard/profile/password', [ProfileController::class, 'updatePass'])->name('profile.updatePass');
-
-
-    
-    Route::delete('/dashboard/dosen/{id}', [ProfileController::class, 'destroy'])->name('dosen.delete');
+    Route::delete('/dosen/{id}', [ProfileController::class, 'destroy'])->name('dosen.delete');
 });
