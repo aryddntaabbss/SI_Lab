@@ -28,23 +28,28 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 
 // ****** ADMIN ******
-// INTERFACE
+Route::prefix('admin/dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
+    // INTERFACE
+    // Dosen
 
-// MATA KULIAH
-Route::prefix('dashboard/matakuliah')->group(function () {
+    // Mata kuliah
+    Route::get('/matakuliah', [MatkulController::class, 'index'])->name('matkul.index');
 
-    Route::get('/', [MatkulController::class, 'index'])->name('matkul.index');
+    Route::get('/matakuliah/tambah', [MatkulController::class, 'create'])->name('matkul.create');
 
-    Route::get('/tambah', [MatkulController::class, 'create'])->name('matkul.create');
+    Route::post('/matakuliah/tambah', [MatkulController::class, 'store'])->name('matkul.store');
 
-    Route::post('/tambah', [MatkulController::class, 'store'])->name('matkul.store');
+    Route::get('/matakuliah/{matkul}/edit', [MatkulController::class, 'edit'])->name('matkul.edit');
 
-    Route::get('/{matkul}/edit', [MatkulController::class, 'edit'])->name('matkul.edit');
+    Route::patch('/matakuliah/{matkul}/edit', [MatkulController::class, 'update'])->name('matkul.update');
 
-    Route::patch('/{matkul}/edit', [MatkulController::class, 'update'])->name('matkul.update');
+    Route::delete('/matakuliah/{matkul}', [MatkulController::class, 'destroy'])->name('matkul.delete');
 
-    Route::delete('/{matkul}', [MatkulController::class, 'destroy'])->name('matkul.delete');
 });
+
+
+
+
 
 
 

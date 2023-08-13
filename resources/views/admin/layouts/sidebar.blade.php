@@ -36,7 +36,8 @@
                     </a>
                 </li>
                 <li class="nav-header">INTERFACE</li>
-                {{-- Kelola data --}}
+
+                {{-- Kelola Dosen --}}
                 <li class="nav-item">
                     <a href="{{ route('dosen.index') }}"
                         class="nav-link {{ Request::is('/dashboard/dosen') ? 'active' : '' }}">
@@ -46,8 +47,10 @@
                         </p>
                     </a>
                 </li>
+
+                {{-- Kelola Mata Kuliah --}}
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard/matakuliah') }}"
+                    <a href="{{ route('matkul.index') }}"
                         class="nav-link {{ Request::is('/dashboard/matakuliah') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -55,6 +58,8 @@
                         </p>
                     </a>
                 </li>
+
+                {{-- Kelola Jadwal --}}
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link {{ Request::is('/dashboard/jadwal') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
