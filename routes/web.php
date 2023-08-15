@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\RegisteredUSerController;
 use App\Http\Controllers\UserController;
@@ -32,9 +33,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::prefix('dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
     // INTERFACE
     // Jadwal
-    Route::get('dashboard/kelola', function () {
-        return view('admin/jadwal/kelola');
-    });
+    Route::get('/kelola-jadwal', [JadwalController::class, 'indexKelola'])->name('kelolaJadwal.index');
     Route::get('dashboard/informasi', function () {
         return view('admin/jadwal/info');
     });

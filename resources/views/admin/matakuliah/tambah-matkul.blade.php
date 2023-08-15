@@ -11,6 +11,10 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Tambah Mata Kuliah</h1>
+                        @if ($total_sks >= 30)
+                        <br>
+                        <h5 class="text-danger">Tidak Bisa Menambah Mata Kuliah. Jumlah SKS Telah Mencapai Batas !</h5>
+                        @endif
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -31,17 +35,6 @@
                             <x-input-error :messages="$errors->get('matkul')" class="mt-2 text-danger" />
                         </div>
 
-                        {{-- <div class="mb-3">
-                            <label for="namaDosen" class="form-label">Nama Dosen :</label>
-                            <select class="form-control" id="namaDosen" name="dosen">
-                                @foreach ($users as $user)  
-                                    @if ($user->id_role === 2)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div> --}}
-
                         <div class="mb-3">
                             <label for="namaDosen" class="form-label">Nama Dosen :</label>
                             <select class="form-control" id="namaDosen" name="dosen">
@@ -59,7 +52,6 @@
                             </select>
                         </div>
                         
-
                         <div class="mb-3">
                             <label for="kelas" class="form-label">Kelas :</label>
                             <input type="text" class="form-control" id="kelas" placeholder="Nama Kelas" name="kelas">
@@ -81,13 +73,16 @@
 
                     </div>    
                     <div class="d-grid gap-2 mx-4 mt-3">
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                    </div>
+                        @if ($total_sks >= 30)
+                        @else
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        @endif
+                    </div>                    
                 </form>
             </div>
         </div>
         
     </div>
-
+    
     @include('admin.layouts.footer')
 @endsection

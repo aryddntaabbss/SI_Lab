@@ -15,6 +15,7 @@ class MatkulController extends Controller
     {
         return view('admin.matakuliah.index-matkul', [
             'mata_kuliah' => Matkul::all(),
+            'total_sks' => Matkul::all()->sum('sks'),
         ]);
     }
 
@@ -22,6 +23,7 @@ class MatkulController extends Controller
     {
         return view('admin.matakuliah.tambah-matkul', [
             'users' => User::all(),
+            'total_sks' => Matkul::all()->sum('sks'),
         ]);
     }
 

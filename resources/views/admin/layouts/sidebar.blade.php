@@ -64,7 +64,7 @@
                 @can('IsAdmin')
                 {{-- Kelola Jadwal --}}
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link {{ Request::is('/dashboard/jadwal') ? 'active' : '' }}">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Jadwal
@@ -73,8 +73,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard/kelola') }}"
-                                class="nav-link {{ Request::is('/dashboard/kelola') ? 'active' : '' }}">
+                            <a href="{{ route('kelolaJadwal.index') }}"
+                                class="nav-link" {{ Request::is('/dashboard/kelola') ? 'active' : '' }}>
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kelola</p>
                             </a>
