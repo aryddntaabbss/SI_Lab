@@ -24,6 +24,8 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
+Route::get('/dashboard/test', [JadwalController::class, 'popTermination'])->name('test.index');
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -34,6 +36,8 @@ Route::prefix('dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
     // INTERFACE
     // Jadwal
     Route::get('/kelola-jadwal', [JadwalController::class, 'indexKelola'])->name('kelolaJadwal.index');
+    Route::post('/kelola-jadwal', [JadwalController::class, 'algoritmaGen'])->name('kelolaJadwal.create');
+
     Route::get('dashboard/informasi', function () {
         return view('admin/jadwal/info');
     });

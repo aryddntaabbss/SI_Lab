@@ -11,7 +11,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Tambah Mata Kuliah</h1>
-                        @if ($total_sks >= 30)
+                        @if ($total_sks >= 43)
                         <br>
                         <h5 class="text-danger">Tidak Bisa Menambah Mata Kuliah. Jumlah SKS Telah Mencapai Batas !</h5>
                         @endif
@@ -73,7 +73,7 @@
 
                     </div>    
                     <div class="d-grid gap-2 mx-4 mt-3">
-                        @if ($total_sks >= 30)
+                        @if ($total_sks >= 43)
                         @else
                             <button type="submit" class="btn btn-success">Simpan</button>
                         @endif

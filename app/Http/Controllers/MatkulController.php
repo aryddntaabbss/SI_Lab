@@ -11,11 +11,25 @@ use App\Models\User;
 
 class MatkulController extends Controller
 {
-    public function index()
+    public function index(Matkul $matkul)
     {
+        $matakuliah = Matkul::all();
+
+        foreach ($matakuliah as $matkul){
+            $matkul->durasi = ($matkul->sks * 45);
+            
+            $jam = floor($matkul->durasi/60);
+            $menit = $matkul->durasi % 60;
+
+            $matkul->durasiJam = $jam;
+            $matkul->durasiMenit = $menit;
+        }
+
+        $total_sks = Matkul::all()->sum('sks');
         return view('admin.matakuliah.index-matkul', [
-            'mata_kuliah' => Matkul::all(),
-            'total_sks' => Matkul::all()->sum('sks'),
+            'mata_kuliah' => $matakuliah,
+            'total_sks' => $total_sks,
+            // 'durasi' => $durasi_matkul,
         ]);
     }
 
@@ -91,4 +105,10 @@ class MatkulController extends Controller
         return redirect()->route('matkul.index')->with('success', 'Data Mata Kuliah Berhasil Dihapus');
     }
 
+
+    // Fungsi-fungsi logika
+
+    public function sksToTime(Matkul $sks){
+        return $sks * 45;
+    }
 }

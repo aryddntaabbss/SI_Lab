@@ -16,11 +16,15 @@ class Jadwal extends Model
 
     public function matkul(): BelongsTo
     {
-        return $this->belongsTo(Matkul::class,'id_matkul', 'id_kelas');
+        return $this->belongsTo(Matkul::class,'id_matkul');
     }
     
     public function hari(): BelongsTo
     {
         return $this->belongsTo(Hari::class,'id_hari');
+    }
+
+    public function populasi(): BelongsTo{
+        return $this->belongsTo(Populasi::class, 'id_populasi');
     }
 }

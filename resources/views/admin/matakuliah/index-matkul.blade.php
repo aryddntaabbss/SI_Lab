@@ -29,6 +29,7 @@
                         <th>DOSEN YANG MENGAJAR</th>
                         <th class="col-1">KELAS</th>
                         <th class="col-1">JUMLAH SKS</th>
+                        <th class="col-1">DURASI</th>
                         <th class="col-1">SEMESTER</th>
                         <th class="col-2">AKSI</th>
                     </tr>
@@ -43,6 +44,12 @@
                             <td>{{ $matkul->user->name }}</td>
                             <td>{{ $matkul->kelas }}</td>
                             <td>{{ $matkul->sks }}</td>
+                            <td>
+                                {{ $matkul->durasiJam }} Jam 
+                                @if ($matkul->durasiMenit !== 0)
+                                    {{ $matkul->durasiMenit }} Menit
+                                @endif
+                            </td>
                             <td>{{ $matkul->semester }}</td>
                             <td>
                                 <div class="row">
@@ -94,6 +101,7 @@
                             <td>{{ $matkul->user->name }}</td>
                             <td>{{ $matkul->kelas }}</td>
                             <td>{{ $matkul->sks }}</td>
+                            <td>{{ sksToTime($matkul->sks) }}</td>
                             <td>{{ $matkul->semester }}</td>
                             <td>
                                 <div class="row">

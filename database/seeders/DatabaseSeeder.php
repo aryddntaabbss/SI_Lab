@@ -115,14 +115,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Isi data matkul ke tabel matkul
-        DB::table('matkul')->insert([
-            'kode_matkul' => 'TIF5642',
-            'nama_matkul' => 'Keamanan Data',
-            'id_dosen' => 2,
-            'kelas' => '4IF2',
-            'sks' => 2,
-            'semester' => 4,
+        \App\Models\Matkul::factory(15)->create();
+
+        DB::table('populasi')->insert([
+            'id' => 1,
         ]);
+        DB::table('populasi')->insert([
+            'id' => 2,
+        ]);
+        DB::table('populasi')->insert([
+            'id' => 3,
+        ]);
+        DB::table('populasi')->insert([
+            'id' => 4,
+        ]);
+        // DB::table('matkul')->insert([
+        //     'kode_matkul' => 'TIF5642',
+        //     'nama_matkul' => 'Keamanan Data',
+        //     'id_dosen' => 2,
+        //     'kelas' => '4IF2',
+        //     'sks' => 2,
+        //     'semester' => 4,
+        // ]);
 
     }
 }
