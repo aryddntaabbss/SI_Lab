@@ -5,17 +5,25 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header mb-1">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row my-4">
                     <div class="col-sm-6">
-                        <h1>PENGELOLAAN DOSEN</h1>
+                        <h1>PENGELOLAAN MATA KULIAH</h1>
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{{ route('dosen.create') }}" class="btn btn-success btn-lg mx-1">Tambah Dosen</a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <h5 class="mx-2">Jumlah Dosen : {{ $jumlahDosen }}</h5>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.card-header -->
-        <div class="card-body">
+        <div class="card-body mt-1 pt-0 mb-5">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr class="table table-border-dark text-center">
@@ -70,9 +78,7 @@
             </table>
         </div>
         <!-- /.card-body -->
-        <div>
-            <a href="{{ route('dosen.create') }}" class="btn btn-primary mx-4">Tambah</a>
-        </div>
+
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

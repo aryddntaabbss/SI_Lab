@@ -46,7 +46,7 @@ class MatkulFactory extends Factory
             'nama_matkul' => $judulPalsu,
             'id_dosen' => rand(2, 5),
             'kelas' => $kelasOptions[array_rand($kelasOptions)],
-            'sks' => rand(1, 4),
+            'sks' => rand(2, 4),
             'semester' => rand(1, 8),
         ];
     }

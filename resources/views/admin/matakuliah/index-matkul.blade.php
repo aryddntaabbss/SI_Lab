@@ -5,31 +5,34 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header mb-1">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row my-4">
                     <div class="col-sm-6">
                         <h1>PENGELOLAAN MATA KULIAH</h1>
                     </div>
                 </div>
-                <div class="row mb-0 justify-content-end d-flex">
-                    <div class="col-3 col-sm-2 text-end">
-                        <h5>Total SKS : {{ $total_sks }}</h5>
+                <div class="row mb-0">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a href="{{ route('matkul.create') }}" class="btn btn-success btn-lg mx-1">Tambah</a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <h5 class="mx-2">Total SKS : {{ $total_sks }}</h5>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.card-header -->
-        <div class="card-body">
+        <div class="card-body mt-1 pt-0 mb-5">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr class="table table-border-dark text-center">
+                        <th class="col-1">NO</th>
                         <th class="col-2">KODE MATA KULIAH</th>
                         <th>NAMA MATA KULIAH</th>
                         <th>DOSEN YANG MENGAJAR</th>
                         <th class="col-1">KELAS</th>
                         <th class="col-1">JUMLAH SKS</th>
-                        <th class="col-1">DURASI</th>
                         <th class="col-1">SEMESTER</th>
                         <th class="col-2">AKSI</th>
                     </tr>
@@ -37,19 +40,14 @@
                 <!-- /.tabel-body -->
                 <tbody>
                     @can('IsAdmin')
-                        @foreach($mata_kuliah as $matkul)
+                        @foreach($mata_kuliah as $i => $matkul)
                         <tr>
+                            <td>{{ $i+1 }}</td>
                             <td>{{ $matkul->kode_matkul }}</td>
                             <td>{{ $matkul->nama_matkul }}</td>
                             <td>{{ $matkul->user->name }}</td>
                             <td>{{ $matkul->kelas }}</td>
                             <td>{{ $matkul->sks }}</td>
-                            <td>
-                                {{ $matkul->durasiJam }} Jam 
-                                @if ($matkul->durasiMenit !== 0)
-                                    {{ $matkul->durasiMenit }} Menit
-                                @endif
-                            </td>
                             <td>{{ $matkul->semester }}</td>
                             <td>
                                 <div class="row">
@@ -150,9 +148,7 @@
             </table>
         </div>
         <!-- /.card-body -->
-        <div>
-            <a href="{{ route('matkul.create') }}" class="btn btn-primary mx-4">Tambah</a>
-        </div>
+        
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

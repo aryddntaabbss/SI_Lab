@@ -129,6 +129,12 @@ class DatabaseSeeder extends Seeder
         DB::table('populasi')->insert([
             'id' => 4,
         ]);
+        DB::table('populasi')->insert([
+            'id' => 5,
+        ]);
+        DB::table('populasi')->insert([
+            'id' => 6,
+        ]);
         // DB::table('matkul')->insert([
         //     'kode_matkul' => 'TIF5642',
         //     'nama_matkul' => 'Keamanan Data',

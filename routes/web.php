@@ -20,15 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 // ******* USER *******
 
-Route::get('/', function () {
-    return view('pages.index');
-});
-
-Route::get('/dashboard/test', [JadwalController::class, 'popTermination'])->name('test.index');
-
+Route::get('/', [DashboardController::class, 'mainPage'])->name('mainpage');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
 
 
 // ****** ADMIN ******
@@ -37,24 +31,14 @@ Route::prefix('dashboard')->middleware(['auth', 'IsAdmin'])->group(function () {
     // Jadwal
     Route::get('/kelola-jadwal', [JadwalController::class, 'indexKelola'])->name('kelolaJadwal.index');
     Route::post('/kelola-jadwal', [JadwalController::class, 'algoritmaGen'])->name('kelolaJadwal.create');
-
-    Route::get('dashboard/informasi', function () {
-        return view('admin/jadwal/info');
-    });
-
-    // Edit |
-    Route::get('/edit-jadwal', function () {
-        return view('admin/layouts/edit-jadwal');
-    });
-    Route::get('/tambah-jadwal', function () {
-        return view('admin/layouts/tambah-jadwal');
-    });
-    
+    Route::patch('/kelola-jadwal/{jadwal}', [JadwalController::class, 'updateKelola'])->name('kelolaJadwal.update');
+    Route::post('/kelola-jadwal/next', [JadwalController::class, 'nextGeneration'])->name('kelolaJadwal.next');
 });
 
 
 // ****** DASHBOARD ******
 Route::prefix('dashboard')->middleware('auth')->group(function () {
+
     // Mata kuliah
     Route::get('/matakuliah', [MatkulController::class, 'index'])->name('matkul.index');
 
@@ -67,6 +51,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::patch('/matakuliah/{matkul}/edit', [MatkulController::class, 'update'])->name('matkul.update');
 
     Route::delete('/matakuliah/{matkul}', [MatkulController::class, 'destroy'])->name('matkul.delete');
+
 
     // Edit Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

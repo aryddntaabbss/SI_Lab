@@ -22,6 +22,7 @@ class RegisteredUserController extends Controller
     {
         return view('admin.dosen.index-dosen', [
             'users' => User::where('id', '<>', 1)->get(),
+            'jumlahDosen' => User::where('id', '<>', 1)->count('id'),
         ]);
     }
     

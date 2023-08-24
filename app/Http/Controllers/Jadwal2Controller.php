@@ -16,110 +16,21 @@ class JadwalController extends Controller
 {
     public function indexKelola()
     {
-        $maxFitness = Populasi::orderByDesc('fitness')->value('id');
-
-        $jadwalMaxFitness = Jadwal::where('id_populasi', $maxFitness)->orderBy('id_hari')->orderBy('waktu_mulai')->get();
-
-        // dd($jadwalMaxFitness);
+        $generasi = session('generasi');
         return view('admin.jadwal.kelola.index-kelola', [
-            'jadwalMatkul' => $jadwalMaxFitness,
-            'populasi' => Populasi::orderByDesc('fitness')->get(),
-            'generasi' => session('generasi'),
-            'totalWaktuProses' => session('totalWaktu'),
-            'hari' => Hari::all(),
+            'gen1' => Jadwal::orderBy('id_populasi')->orderBy('id_hari')->orderBy('waktu_mulai')->get(),
+            'populasi' => Populasi::all(),
+            'generasi' => $generasi,
         ]);
-    }
-
-    public function updateKelola(Request $request, Jadwal $jadwal)
-    {
-        // dd($request);
-        $request->validate([
-            'hari' => ['required'],
-            'waktu_mulai' => ['required'],
-        ]);
-
-        $durasi = $jadwal->matkul->sks * 45;
-        $waktuMulai = Carbon::parse($request->waktu_mulai);
-        $waktuSelesai = $waktuMulai->copy()->addMinutes($durasi);
-        $jadwal->update([
-            'id_hari' => $request->hari,
-            'waktu_mulai' => $request->waktu_mulai,
-            'waktu_selesai' => $waktuSelesai,
-        ]);
-
-        $this->cekFitness();
-        return redirect()->route('kelolaJadwal.index')->with('success', 'Data Jadwal Berhasil Di Perbarui !');
-    }
-
-    public function simpanJadwal()
-    {
-        $maxFitness = Populasi::max('fitness');
-        // $id = Populasi::max('fitness')->get('id');
-
-        // Hapus jadwal yang bukan berasal dari populasi dengan fitness tertinggi
-        $jadwalToDelete = Jadwal::whereNotIn('id_populasi', function ($query) use ($maxFitness) {
-            $query->select('id')
-                ->from('populasi')
-                ->where('fitness', '<', $maxFitness);
-        })->delete();
-
-        dd($jadwalToDelete);
-        foreach ($jadwalToDelete as $jadwal) {
-            $jadwal->delete();
-        }
-
-        // Hapus populasi yang bukan memiliki fitness tertinggi
-        Populasi::where('fitness', '<', $maxFitness)->delete();
-        return redirect()->route('kelolaJadwal.index')->with('success', 'Jadwal Berhasil Di Simpan !');
     }
 
     public function algoritmaGen()
     {
-        Jadwal::truncate();
-        Populasi::query()->update(['fitness' => 0]);
-        ini_set('max_execution_time', 300);
-        session(['generasi' => 0, 'totalWaktu' => 0]);
-        $startTime = microtime(true);
-        $generasi = 0;
-        $targetFitness = 90;
-
+        ini_set('max_execution_time', 120);
+        
         $this->createJadwal();
-        while (true) {
-            $this->popCrossOver();
-            $this->popMutation();
-            $this->popTermination();
-            $this->popRegeneration();
-            $generasi += 1;
-
-            // Perbarui data session
-            session(['generasi' => $generasi]);
-
-            // Cek kondisi berhenti
-            $currentTime = microtime(true);
-            $executionTime = $currentTime - $startTime;
-
-            if ($executionTime > 15) {
-                break; // Hentikan perulangan jika waktu eksekusi lebih dari 10 detik
-            }
-
-            // Cek apakah ada populasi dengan fitness yang melebihi target
-            $exceedsTarget = Populasi::where('fitness', '>', $targetFitness)->exists();
-            if ($exceedsTarget) {
-                break; // Hentikan perulangan jika populasi melebihi target fitness
-            }
-        }
-        $this->cekFitness();
-        $endTime = microtime(true);
-        $totalTime = number_format(($endTime - $startTime), 2);
-        session(['generasi' => $generasi, 'totalWaktu' => $totalTime]);
-        return Redirect::route('kelolaJadwal.index');
-    }
-
-    public function nextGeneration()
-    {
-        $startTime = microtime(true);
-        $generasi = session('generasi');
-        $targetFitness = 90;
+        $generasi = 0;
+        $targetFitness = 95;
 
         while (true) {
             $this->popCrossOver();
@@ -128,17 +39,6 @@ class JadwalController extends Controller
             $this->popRegeneration();
             $generasi += 1;
 
-            // Perbarui data session
-            session(['generasi' => $generasi]);
-
-            // Cek kondisi berhenti
-            $currentTime = microtime(true);
-            $executionTime = $currentTime - $startTime;
-
-            if ($executionTime > 30) {
-                break; // Hentikan perulangan jika waktu eksekusi lebih dari 10 detik
-            }
-
             // Cek apakah ada populasi dengan fitness yang melebihi target
             $exceedsTarget = Populasi::where('fitness', '>', $targetFitness)->exists();
             if ($exceedsTarget) {
@@ -146,70 +46,79 @@ class JadwalController extends Controller
             }
         }
         $this->cekFitness();
-        $endTime = microtime(true);
-        $totalTime = number_format(($endTime - $startTime), 2);
-        session(['generasi' => $generasi, 'totalWaktu' => $totalTime]);
+        session(['generasi' => $generasi]);
         return Redirect::route('kelolaJadwal.index');
     }
+
 
     public function createJadwal()
     {
+        Jadwal::truncate();
+        Populasi::query()->update(['fitness' => null]);
         $matakuliah = Matkul::inRandomOrder()->get();
-        $jamBuka = 7 * 60 + 30; // 7.30 dalam menit
-        $jamTutup = 17 * 60; // Jam tutup reguler       
-
-        $jadwalToInsert = [];
-
+        $i = 1;
+        // Membuat 4 Populasi (for - Looping)
         for ($i = 1; $i <= 4; $i++) {
             foreach ($matakuliah as $matkul) {
+
                 $matkul->id_hari = $this->randomHari();
-                if ($matkul->id_hari == 5) {
-                    $jamTutup = 12 * 60;
-                }
+
                 $matkul->durasi = ($matkul->sks * 45);
-                $jamMasuk = random_int($jamBuka, $jamTutup - $matkul->durasi);
 
-                if ($jamMasuk % 5 !== 0) {
-                    $jamMasuk = ceil($jamMasuk / 5) * 5;
+                // ubah durasi matkul ke format jam dan menit
+                $jam = floor($matkul->durasi / 60);
+                $menit = $matkul->durasi % 60;
+
+                $matkul->durasiJam = $jam;
+                $matkul->durasiMenit = $menit;
+
+                // Batasan waktu buka dan tutup lab (dalam menit)
+                $jamBuka = 7 * 60 + 30; // 7.30 dalam menit
+                $jamTutup = ($matkul->id_hari == 5) ? 12 * 60 : 17 * 60;
+
+                // Menghasilkan jam masuk secara acak
+                $jamMasuk = mt_rand($jamBuka, $jamTutup - $jam * 60);
+
+                // Jika durasi matkul melebihi jam tutup, atur jam masuk ke jam buka
+                if ($jamMasuk + $jam * 60 + $menit > $jamTutup) {
+                    $jamMasuk = $jamBuka;
                 }
 
-                $waktuMulai = Carbon::createFromTime(floor($jamMasuk / 60), $jamMasuk % 60);
-                $waktuSelesai = $waktuMulai->copy()->addMinutes($matkul->durasi);
+                // menghitung waktu keluar berdasarkan jam masuk
+                $jamKeluar = $jamMasuk + $jam * 60 + $menit;
 
-                $jadwalToInsert[] = [
+                // ubah jam keluar ke format jam dan menit
+                $jamKeluarJ = floor($jamKeluar / 60);
+                $menitKeluar = $jamKeluar % 60;
+
+                // ubah format jam menjadi lebih simple
+                $matkul->jamMasuk = Carbon::createFromTime(floor($jamMasuk / 60), $jamMasuk % 60)->format('H:i');
+                $matkul->jamKeluar = Carbon::createFromTime($jamKeluarJ, $menitKeluar)->format('H:i');
+
+                Jadwal::create([
                     'id_matkul' => $matkul->id,
                     'id_hari' => $matkul->id_hari,
-                    'waktu_mulai' => $waktuMulai->toTimeString(),
-                    'waktu_selesai' => $waktuSelesai->toTimeString(),
+                    'waktu_mulai' => $matkul->jamMasuk,
+                    'waktu_selesai' => $matkul->jamKeluar,
                     'id_populasi' => $i,
-                    'updated_at' => $matkul->updated_at,
-                    'created_at' => $matkul->created_at,
-                ];
+                    `updated_at` => $matkul->updated_at,
+                    `created_at` => $matkul->created_at,
+                ]);
             }
         }
 
-        // Masukkan semua jadwal sekaligus ke database
-        Jadwal::insert($jadwalToInsert);
+        $this->cekFitness();
     }
 
     public function cekFitness()
     {
+        $totalFitnessJadwal = 0;
         $jumlahPopulasi = Populasi::all();
-
-        foreach ($jumlahPopulasi as $populasi) {
-            $idPopulasi = $populasi->id;
-            $matkulCountInPopulasi = Jadwal::where('id_populasi', $idPopulasi)->count();
-            $matkulCountInTable = Matkul::count();
-
-            if ($matkulCountInPopulasi !== $matkulCountInTable) {
-                Populasi::updateOrCreate(
-                    ['id' => $idPopulasi],
-                    ['fitness' => 0]
-                );
-                continue;
-            }
+        for ($i = 1; $i <= count($jumlahPopulasi); $i++) {
+            $idPopulasi = $i;
             // Cek Fitnes per jadwal
             $totalFitnessJadwal = 0;
+
             for ($j = 1; $j <= 5; $j++) {
                 $idHari = $j; // Ganti $idHari sesuai iterasi yang saat ini sedang dijalankan
                 $matkulHari1 = Jadwal::where('id_populasi', $idPopulasi)->where('id_hari', $idHari)->get();
@@ -221,17 +130,17 @@ class JadwalController extends Controller
                     $fitnessJadwal = 0;
 
                     if (count($matkulHari1) == 1) {
-                        $cekMaksMatkul = 1.4;
+                        $cekMaksMatkul = 1;
                         $matkuls = $matkulHari1;
-                        $cekTabrak = 1.4;
+                        $cekTabrak = 1;
                         $cekMenit = $this->checkMenitMulai(...$matkuls);
                     } else if (($matkulHari1->first()->id_hari >= 1 && $matkulHari1->first()->id_hari <= 4) && count($matkulHari1) <= 4) {
-                        $cekMaksMatkul = 1.4;
+                        $cekMaksMatkul = 1;
                         $matkuls = $matkulHari1->take(4);
                         $cekTabrak = $this->checkTabrakan(...$matkuls);
                         $cekMenit = $this->checkMenitMulai(...$matkuls);
                     } elseif ($matkulHari1->first()->id_hari == 5 && count($matkulHari1) <= 2) {
-                        $cekMaksMatkul = 1.4;
+                        $cekMaksMatkul = 1;
                         $matkuls = $matkulHari1->take(2);
                         $cekTabrak = $this->checkTabrakan(...$matkuls);
                         $cekMenit = $this->checkMenitMulai(...$matkuls);
@@ -241,7 +150,6 @@ class JadwalController extends Controller
                     $totalFitnessJadwal += $fitnessJadwal;
                 }
             }
-
             Populasi::updateOrCreate(
                 ['id' => $idPopulasi],
                 ['fitness' => $totalFitnessJadwal]
@@ -260,6 +168,8 @@ class JadwalController extends Controller
     public function popCrossOver()
     {
         $best = $this->popSelection();
+        $child1 = [];
+        $child2 = [];
 
         // Ambil data jadwal best1 hari 1-3
         for ($i = 0; $i < 3; $i++) {
@@ -269,6 +179,7 @@ class JadwalController extends Controller
             $child1[$i] = $temp2;
             $child2[$i] = $temp1;
         }
+
         // Ambil data jadwal best2 hari 4-5
         for ($i = 3; $i < 5; $i++) {
             $temp1 = Jadwal::where('id_populasi', $best[0])->where('id_hari', $i + 1)->get();
@@ -277,8 +188,8 @@ class JadwalController extends Controller
             $child2[$i] = $temp2;
         }
 
-        // dd($child1);
         $popCrossover = [$child1, $child2];
+
         foreach ($popCrossover as $i => $child) {
             foreach ($child as $hari) {
                 foreach ($hari as $jadwal) {
@@ -299,34 +210,42 @@ class JadwalController extends Controller
 
     public function popMutation()
     {
-        $populasiToUpdate = [5, 6];
-        $rateMutasi = 10; // Persentase mutasi
-        $jamBuka = 7 * 60 + 30; // 7.30 dalam menit
-
-        foreach ($populasiToUpdate as $populasiId) {
-            $jadwalItems = Jadwal::where('id_populasi', $populasiId)
-                ->whereIn('id_hari', range(1, 5))
-                ->get()
-                ->groupBy('id_hari');
-
-            foreach ($jadwalItems as $hari => $jadwals) {
-                foreach ($jadwals as $jadwal) {
-                    if (random_int(1, 100) <= $rateMutasi) {
-                        $durasi = $jadwal->matkul->sks * 45;
-                        $jamTutup = ($hari == 5) ? 12 * 60 : 17 * 60;
-
-                        $jamMasuk = max($jamBuka, random_int($jamBuka, $jamTutup - $durasi));
-                        if ($jamMasuk % 5 !== 0) {
-                            $jamMasuk = ceil($jamMasuk / 5) * 5;
-                        }
-                        $jamKeluar = $jamMasuk + $durasi;
-
-                        $jadwal->update([
-                            'waktu_mulai' => Carbon::createFromTime(floor($jamMasuk / 60), $jamMasuk % 60)->format('H:i'),
-                            'waktu_selesai' => Carbon::createFromTime(floor($jamKeluar / 60), $jamKeluar % 60)->format('H:i'),
+        $child1 = Jadwal::where('id_populasi', 5)->get();
+        $child2 = Jadwal::where('id_populasi', 6)->get();
+        $populasiBaru = [$child1, $child2];
+        /// MUTASIII
+        $rateMutasi = 10;
+        foreach ($populasiBaru as $j => $child) {
+            $hari = [];
+            for ($i = 1; $i <= 5 ; $i++){
+                $hari[$i] = $child->where('id_hari', $i);
+                $angka = random_int(0, 100);
+                
+                if ($angka < $rateMutasi) {
+                    foreach ($hari[$i] as $jadwal) {
+                        $jadwal->durasi = ($jadwal->matkul->sks * 45);
+                        
+                        // Batasan waktu buka dan tutup lab (dalam menit)
+                        $jamBuka = 7 * 60 + 30; // 7.30 dalam menit
+                        $jamTutup = ($jadwal->id_hari == 5) ? 12 * 60 : 17 * 60;
+                        
+                        // Menghasilkan jam masuk secara acak
+                        $jamMasuk = mt_rand($jamBuka, $jamTutup - 180);
+                        
+                        // menghitung waktu keluar berdasarkan jam masuk
+                        $jamKeluar = $jamMasuk + $jadwal->durasi;
+                        
+                        $jadwal->jamMasuk = Carbon::createFromTime(floor($jamMasuk / 60), $jamMasuk % 60)->format('H:i');
+                        $jadwal->jamKeluar = Carbon::createFromTime(floor($jamKeluar / 60), $jamKeluar % 60)->format('H:i');
+                        // dd($jadwal->id);
+                        $jadwal = Jadwal::where('id_populasi', $j+5)->where('id_hari', $i)->where('id', $jadwal->id)->update([
+                            'waktu_mulai' => $jadwal->jamMasuk,
+                            'waktu_selesai' => $jadwal->jamKeluar,
                         ]);
+
                     }
                 }
+
             }
         }
     }
@@ -340,6 +259,7 @@ class JadwalController extends Controller
         Populasi::whereIn('id', $worstIds)->update(['fitness' => null]);
     }
 
+    /// GPT 2 WORKKKKK THANKS GPT !!
     public function popRegeneration()
     {
         $populasiToUpdate = [];
@@ -378,7 +298,7 @@ class JadwalController extends Controller
                 return 0; // Mata kuliah memiliki menit mulai yang tidak sesuai
             }
 
-            return 0.2; // Mata kuliah memiliki menit mulai yang sesuai
+            return 1; // Mata kuliah memiliki menit mulai yang sesuai
         }
 
         // Kasus umum: Lebih dari 1 mata kuliah
@@ -398,24 +318,23 @@ class JadwalController extends Controller
             }
         }
 
-        return 0.2; // Semua mata kuliah memiliki menit mulai yang sesuai
+        return 1; // Semua mata kuliah memiliki menit mulai yang sesuai
     }
 
     private function checkTabrakan(...$matkuls)
     {
         $totalMatkuls = count($matkuls);
         if ($totalMatkuls == 1) {
-            return 1.4;
+            return 1;
         }
         for ($i = 0; $i < $totalMatkuls; $i++) {
             for ($j = $i + 1; $j < $totalMatkuls; $j++) {
                 if ($this->hasConflict($matkuls[$i], $matkuls[$j])) {
-
                     return 0; // Ada tabrakan
                 }
             }
         }
-        return 1.4; // Tidak ada tabrakan
+        return 1; // Tidak ada tabrakan
     }
 
     private function hasConflict($matkul1, $matkul2)

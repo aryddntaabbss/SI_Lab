@@ -12,7 +12,8 @@ class Populasi extends Model
 
     protected $table = 'populasi';
 
-    protected $fillable = ['id', 'fitness'];
+    protected $guarded = ['id'];
+    // protected $fillable = ['id', 'fitness'];
 
     public function hari(): HasMany
     {
