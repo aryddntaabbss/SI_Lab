@@ -19,7 +19,6 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        {{-- @foreach ($users as $user) --}}
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
@@ -29,7 +28,6 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <h3>{{ $user }}</h3>
-
                                 <p>Jumlah Dosen</p>
                             </div>
                             <div class="icon">
@@ -43,7 +41,6 @@
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $matkul }}</h3>
-
                                 <p>Jumlah Mata Kuliah</p>
                             </div>
                             <div class="icon">
@@ -57,7 +54,6 @@
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3>{{ $prodi }}</h3>
-
                                 <p>Jumlah Prodi</p>
                             </div>
                             <div class="icon">
@@ -70,7 +66,6 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-        {{-- @endforeach --}}
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
