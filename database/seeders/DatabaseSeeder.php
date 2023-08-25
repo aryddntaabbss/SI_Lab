@@ -82,40 +82,8 @@ class DatabaseSeeder extends Seeder
             'id_role' => 1,
         ]);
 
-        \App\Models\User::factory()->create([
-            'name' => 'Abdulkadir',
-            'email' => 'dosen@gmail.com',
-            'password' => bcrypt('dosen123'),
-            'id_prodi' => 2,
-            'id_role' => 2,
-        ]);
-        
-        \App\Models\User::factory()->create([
-            'name' => 'Agil Aryaddinata',
-            'email' => 'dosen2@gmail.com',
-            'password' => bcrypt('dosen123'),
-            'id_prodi' => 3,
-            'id_role' => 2,
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Alriskhandy',
-            'email' => 'dosen3@gmail.com',
-            'password' => bcrypt('dosen123'),
-            'id_prodi' => 1,
-            'id_role' => 2,
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Husnul Hidayat',
-            'email' => 'dosen4@gmail.com',
-            'password' => bcrypt('dosen123'),
-            'id_prodi' => 6,
-            'id_role' => 2,
-        ]);
-
         // Isi data matkul ke tabel matkul
-        \App\Models\Matkul::factory(15)->create();
+        // \App\Models\Matkul::factory(15)->create();
 
         DB::table('populasi')->insert([
             'id' => 1,
@@ -135,14 +103,7 @@ class DatabaseSeeder extends Seeder
         DB::table('populasi')->insert([
             'id' => 6,
         ]);
-        // DB::table('matkul')->insert([
-        //     'kode_matkul' => 'TIF5642',
-        //     'nama_matkul' => 'Keamanan Data',
-        //     'id_dosen' => 2,
-        //     'kelas' => '4IF2',
-        //     'sks' => 2,
-        //     'semester' => 4,
-        // ]);
+
 
     }
 }
