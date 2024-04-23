@@ -1,0 +1,72 @@
+._img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Atur lebar sesuai kebutuhan */
+    overflow: hidden;
+}
+
+._main-post-img {
+    height: 30rem;
+}
+._post-img {
+    height: 11rem;
+}
+
+/* Elemen gambar styling */
+._main-post-wrapper,
+._post-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+._post-body {
+    text-align: justify;
+}
+
+
+@media (max-width:1200px){
+    ._main-post-img {
+        height: calc(0.8 * 30rem);
+    }
+    ._post-img {
+        height: calc(0.8*11rem) ;
+    }
+}
+
+@media (max-width:992px){
+    ._main-post-img {
+        height: calc(0.6 * 30rem);
+    }
+    ._post-img {
+        height: calc(0.6*11rem) ;
+    }
+}
+
+@media (max-width:768px){
+    ._main-post-img {
+        height: calc(0.7 * 30rem);
+    }
+    ._post-img {
+        height: calc(1*11rem) ;
+    }
+}
+
+@media (max-width:576px){
+    ._main-post-img,
+    ._post-img {
+        height: calc(0.4*30rem);
+    }
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Ubah nilai alpha sesuai kebutuhan transparansi */
+    z-index: 1;
+}
